@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCNA Quiz — Préparation Complète</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg2: #111827;
+    --bg3: #1a2235;
+    --card: #131c2e;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #f0f4ff;
+    --text2: #8899bb;
+    --text3: #4a5a7a;
+    --accent1: #3b82f6;
+    --accent1-dim: rgba(59,130,246,0.15);
+    --accent2: #8b5cf6;
+    --accent2-dim: rgba(139,92,246,0.15);
+    --green: #10b981;
+    --green-dim: rgba(16,185,129,0.15);
+    --red: #ef4444;
+    --red-dim: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-dim: rgba(245,158,11,0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .app {
+    position: relative; z-index: 1;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+
+  .logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, #fff 0%, #8899bb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .header-stats {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border2);
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    color: var(--text2);
+  }
+
+  .stat-pill.blue { border-color: rgba(59,130,246,0.4); color: #93c5fd; background: var(--accent1-dim); }
+  .stat-pill.purple { border-color: rgba(139,92,246,0.4); color: #c4b5fd; background: var(--accent2-dim); }
+
+  /* ── Progress zone ── */
+  .progress-zone {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .progress-track {
+    flex: 1; min-width: 200px;
+  }
+
+  .progress-labels {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--text2);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 8px;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .score-live {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .score-live-num {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--green);
+  }
+
+  .score-live-lbl {
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* ── Dot navigator ── */
+  .dot-nav {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    margin-bottom: 1.5rem;
+  }
+
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .dot:hover { transform: scale(1.3); }
+  .dot.ok { background: var(--green); border-color: var(--green); }
+  .dot.fail { background: var(--red); border-color: var(--red); }
+  .dot.curr {
+    transform: scale(1.4);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.35);
+    background: var(--accent1); border-color: var(--accent1);
+  }
+
+  /* ── Question card ── */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.25s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-top {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+  }
+
+  .q-badge {
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .q-badge.ccna1 { background: var(--accent1-dim); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+  .q-badge.ccna2 { background: var(--accent2-dim); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
+
+  .q-topic {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: 'DM Mono', monospace;
+    margin-left: auto;
+  }
+
+  .q-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Options ── */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .opt {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 13px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text2);
+    transition: all 0.2s;
+    text-align: left;
+    width: 100%;
+  }
+
+  .opt:hover:not(:disabled) {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.35);
+    color: var(--text);
+    transform: translateX(3px);
+  }
+
+  .opt:disabled { cursor: default; transform: none; }
+
+  .opt.correct {
+    background: var(--green-dim);
+    border-color: rgba(16,185,129,0.5);
+    color: #6ee7b7;
+  }
+
+  .opt.wrong {
+    background: var(--red-dim);
+    border-color: rgba(239,68,68,0.5);
+    color: #fca5a5;
+  }
+
+  .opt.reveal {
+    background: var(--green-dim);
+    border-color: rgba(16,185,129,0.3);
+    color: #6ee7b7;
+  }
+
+  .opt-key {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    width: 22px;
+    flex-shrink: 0;
+    padding-top: 1px;
+    opacity: 0.6;
+  }
+
+  .opt.correct .opt-key,
+  .opt.reveal .opt-key { opacity: 1; }
+
+  /* ── Explanation ── */
+  .explanation {
+    margin-top: 1rem;
+    padding: 12px 16px;
+    background: rgba(59,130,246,0.07);
+    border-left: 2px solid var(--accent1);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+    display: none;
+  }
+
+  .explanation.show { display: block; animation: fadeUp 0.2s ease; }
+
+  .exp-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent1);
+    margin-bottom: 6px;
+  }
+
+  /* ── Result feedback ── */
+  .feedback {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .feedback.show { display: flex; animation: fadeUp 0.2s ease; }
+  .feedback.ok { background: var(--green-dim); color: #6ee7b7; }
+  .feedback.ko { background: var(--red-dim); color: #fca5a5; }
+
+  /* ── Navigation ── */
+  .nav-row {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 10px 22px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+  }
+
+  .btn:hover:not(:disabled) {
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+  }
+
+  .btn:disabled { opacity: 0.3; cursor: default; }
+
+  .btn.primary {
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .btn.primary:hover:not(:disabled) {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  /* ── Results screen ── */
+  #result-view { display: none; }
+
+  .result-hero {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .result-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .result-pct {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-label {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 1.5rem;
+  }
+
+  .grade-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  .grade-a { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.4); }
+  .grade-b { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.4); }
+  .grade-c { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.35); }
+  .grade-d { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.35); }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .result-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .rs-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .rs-lbl {
+    font-size: 12px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .result-actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .app { padding: 1rem 1rem 3rem; }
+    .q-card { padding: 1.25rem; }
+    .q-text { font-size: 1rem; }
+    .result-pct { font-size: 3.5rem; }
+    header { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🌐</div>
+      <div>
+        <div class="logo-text">CCNA QuizPro</div>
+        <div class="logo-sub">Préparation Certifications</div>
+      </div>
+    </div>
+    <div class="header-stats">
+      <span class="stat-pill blue">CCNA 1 — 25 questions</span>
+      <span class="stat-pill purple">CCNA 2 — 25 questions</span>
+    </div>
+  </header>
+
+  <!-- QUIZ VIEW -->
+  <div id="quiz-view">
+
+    <div class="progress-zone">
+      <div class="progress-track">
+        <div class="progress-labels">
+          <span id="p-label">Question 1 / 50</span>
+          <span id="p-pct">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width:2%"></div>
+        </div>
+      </div>
+      <div class="score-live">
+        <div class="score-live-num" id="score-live">0/0</div>
+        <div class="score-live-lbl">Score actuel</div>
+      </div>
+    </div>
+
+    <div class="dot-nav" id="dot-nav"></div>
+
+    <div class="q-card" id="q-card">
+      <div class="q-top">
+        <span class="q-num" id="q-num">Q01</span>
+        <span class="q-badge" id="q-badge"></span>
+        <span class="q-topic" id="q-topic"></span>
+      </div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="explanation" id="explanation">
+        <div class="exp-label">Explication</div>
+        <div id="exp-text"></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" id="prev-btn" onclick="navigate(-1)">← Précédent</button>
+      <button class="btn primary" id="next-btn" onclick="navigate(1)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- RESULT VIEW -->
+  <div id="result-view">
+    <div class="result-hero">
+      <div class="result-pct" id="r-pct">0%</div>
+      <div class="result-label">Score final sur 50 questions</div>
+      <div class="grade-badge" id="r-grade"></div>
+      <div class="result-actions">
+        <button class="btn primary" onclick="restart()">↺ Recommencer</button>
+        <button class="btn" onclick="reviewWrong()">Revoir les erreurs</button>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="result-stat">
+        <div class="rs-num" style="color:var(--green)" id="r-correct">0</div>
+        <div class="rs-lbl">Bonnes réponses</div>
+      </div>
+      <div class="result-stat">
+        <div class="rs-num" style="color:var(--red)" id="r-wrong">0</div>
+        <div class="rs-lbl">Mauvaises réponses</div>
+      </div>
+      <div class="result-stat">
+        <div class="rs-num" style="color:#93c5fd" id="r-unanswered">0</div>
+        <div class="rs-lbl">Sans réponse</div>
+      </div>
+      <div class="result-stat">
+        <div class="rs-num" id="r-ccna1">0/25</div>
+        <div class="rs-lbl">CCNA 1</div>
+      </div>
+      <div class="result-stat">
+        <div class="rs-num" id="r-ccna2">0/25</div>
+        <div class="rs-lbl">CCNA 2</div>
+      </div>
+      <div class="result-stat">
+        <div class="rs-num" id="r-time" style="color:var(--amber)">—</div>
+        <div class="rs-lbl">Temps total</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  /* ══ CCNA 1 ══ */
+  {cat:"CCNA 1",label:"ccna1",topic:"Modèle OSI",q:"Quel modèle de référence réseau possède exactement 7 couches ?",opts:["TCP/IP","OSI","SNA","IEEE 802"],ans:1,exp:"Le modèle OSI (Open Systems Interconnection) comporte 7 couches : Physique, Liaison, Réseau, Transport, Session, Présentation, Application."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Équipements",q:"À quelle couche OSI opère un commutateur (switch) de base ?",opts:["Couche 1 — Physique","Couche 2 — Liaison de données","Couche 3 — Réseau","Couche 4 — Transport"],ans:1,exp:"Un switch de base utilise les adresses MAC pour commuter les trames — il opère à la couche 2 du modèle OSI."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Adressage IPv4",q:"Quelle est la taille d'une adresse IPv4 ?",opts:["32 bits","48 bits","64 bits","128 bits"],ans:0,exp:"IPv4 utilise des adresses de 32 bits, représentées en notation décimale pointée (ex : 192.168.1.1)."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Protocoles",q:"Quel protocole résout une adresse IP en adresse MAC ?",opts:["RARP","DNS","ARP","DHCP"],ans:2,exp:"ARP (Address Resolution Protocol) découvre l'adresse MAC correspondant à une adresse IP sur le réseau local via un broadcast."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Adressage MAC",q:"Combien de bits composent une adresse MAC ?",opts:["32 bits","48 bits","64 bits","128 bits"],ans:1,exp:"Une adresse MAC est composée de 48 bits (6 octets) représentée en hexadécimal. Les 24 premiers bits = OUI (fabricant), les 24 suivants = numéro unique."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Adressage privé",q:"Quelle est la plage d'adresses privées de classe A (RFC 1918) ?",opts:["10.0.0.0 – 10.255.255.255","172.16.0.0 – 172.31.255.255","192.168.0.0 – 192.168.255.255","169.254.0.0 – 169.254.255.255"],ans:0,exp:"Selon la RFC 1918, les adresses privées de classe A couvrent le bloc 10.0.0.0/8, soit de 10.0.0.0 à 10.255.255.255."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Protocoles",q:"Quel protocole fournit automatiquement une adresse IP à un hôte ?",opts:["DNS","DHCP","FTP","SNMP"],ans:1,exp:"DHCP (Dynamic Host Configuration Protocol) attribue automatiquement adresse IP, masque, passerelle par défaut et serveur DNS à un hôte."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Subnetting",q:"Quelle est la notation CIDR du masque 255.255.255.0 ?",opts:["/22","/23","/24","/25"],ans:2,exp:"255.255.255.0 contient 24 bits à 1 (trois octets entiers), ce qui donne /24 en notation CIDR."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Câblage",q:"Quel câble est utilisé pour connecter deux PC directement ?",opts:["Câble droit (straight-through)","Câble croisé (crossover)","Câble console","Câble coaxial"],ans:1,exp:"Pour relier deux équipements de même type (PC–PC), on utilise un câble croisé. Les équipements modernes supportent Auto-MDI/MDIX."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Modèle OSI",q:"Quelle couche OSI assure la communication bout-en-bout et le contrôle de flux ?",opts:["Couche 3 — Réseau","Couche 4 — Transport","Couche 5 — Session","Couche 6 — Présentation"],ans:1,exp:"La couche Transport (couche 4) gère la communication bout-en-bout, la segmentation des données, le contrôle de flux et la correction d'erreurs."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Protocoles TCP/UDP",q:"Quel protocole de couche 4 est orienté connexion et garantit la livraison ?",opts:["UDP","ICMP","TCP","GRE"],ans:2,exp:"TCP (Transmission Control Protocol) établit une connexion via le three-way handshake (SYN, SYN-ACK, ACK) et garantit la livraison fiable des données."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Ports",q:"Sur quel port TCP fonctionne HTTPS par défaut ?",opts:["80","443","8080","22"],ans:1,exp:"HTTPS (HTTP Secure) utilise le port 443 TCP. HTTP non sécurisé utilise le port 80."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Broadcast",q:"Quelle est l'adresse de broadcast du réseau 192.168.1.0/24 ?",opts:["192.168.1.0","192.168.1.1","192.168.1.254","192.168.1.255"],ans:3,exp:"Pour un réseau /24 (256 adresses), la première est l'adresse réseau (192.168.1.0) et la dernière est le broadcast (192.168.1.255)."},
+  {cat:"CCNA 1",label:"ccna1",topic:"ICMP",q:"Quel protocole est utilisé par la commande 'ping' pour tester la connectivité ?",opts:["FTP","ICMP","SMTP","SNMP"],ans:1,exp:"ICMP (Internet Control Message Protocol) transporte les messages Echo Request et Echo Reply utilisés par la commande ping."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Ethernet",q:"Quelle est la vitesse d'un port Fast Ethernet (100BASE-TX) ?",opts:["10 Mbps","100 Mbps","1 Gbps","10 Gbps"],ans:1,exp:"Fast Ethernet (IEEE 802.3u) fonctionne à 100 Mbps. Gigabit Ethernet = 1 Gbps, 10 Gigabit = 10 Gbps."},
+  {cat:"CCNA 1",label:"ccna1",topic:"IOS Cisco",q:"Quelle commande Cisco affiche la configuration active en RAM ?",opts:["show startup-config","show running-config","show interfaces","show version"],ans:1,exp:"'show running-config' affiche la configuration courante en RAM. 'show startup-config' affiche celle sauvegardée en NVRAM."},
+  {cat:"CCNA 1",label:"ccna1",topic:"IOS Cisco",q:"Quel mode IOS Cisco permet de configurer une interface réseau ?",opts:["Mode utilisateur","Mode privilégié","Mode de configuration globale","Mode de configuration d'interface"],ans:3,exp:"Le mode interface (ex: 'interface GigabitEthernet 0/0') permet de configurer les paramètres d'une interface spécifique."},
+  {cat:"CCNA 1",label:"ccna1",topic:"NAT",q:"Que fait le NAT (Network Address Translation) ?",opts:["Il chiffre les données","Il traduit adresses IP privées en publiques","Il segmente les VLANs","Il implémente le spanning tree"],ans:1,exp:"NAT traduit les adresses IP privées en adresses publiques, permettant à plusieurs hôtes de partager une seule adresse IP publique pour accéder à Internet."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Subnetting",q:"Combien d'hôtes utilisables peut accueillir un réseau /28 ?",opts:["14","16","30","32"],ans:0,exp:"/28 laisse 4 bits pour les hôtes → 2^4 = 16 adresses totales. On soustrait réseau + broadcast → 14 hôtes utilisables."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Modèle OSI",q:"Quel est le rôle principal de la couche Physique (couche 1) ?",opts:["Adressage logique","Transmission de bits sur le support","Routage des paquets","Établissement de sessions"],ans:1,exp:"La couche Physique gère la transmission des bits bruts sur le support physique : tensions électriques, signaux lumineux (fibre), ondes radio (Wi-Fi)."},
+  {cat:"CCNA 1",label:"ccna1",topic:"IPv6",q:"Quelle est la taille d'une adresse IPv6 ?",opts:["32 bits","64 bits","128 bits","256 bits"],ans:2,exp:"IPv6 utilise des adresses de 128 bits représentées en hexadécimal sur 8 groupes de 16 bits (ex : 2001:0db8::1)."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Types de transmission",q:"Quel type de transmission envoie des données à TOUS les hôtes d'un réseau ?",opts:["Unicast","Multicast","Broadcast","Anycast"],ans:2,exp:"Broadcast = envoi à tous les hôtes du domaine. Multicast = groupe spécifique. Unicast = un seul destinataire. Anycast = le plus proche d'un groupe."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Câblage",q:"Quel câble permet d'accéder à la console d'un équipement Cisco ?",opts:["Câble droit","Câble croisé","Câble console (rollover)","Câble fibre monomode"],ans:2,exp:"Le câble rollover (ou console) relie le port RJ-45 console de l'équipement au port série/USB du PC via un adaptateur."},
+  {cat:"CCNA 1",label:"ccna1",topic:"Duplex",q:"Que signifie une connexion 'full-duplex' ?",opts:["Transmission dans un seul sens","Transmission simultanée dans les deux sens","Transmission alternée","Connexion sans fil"],ans:1,exp:"Full-duplex permet l'envoi et la réception simultanés, éliminant les collisions et doublant la bande passante effective par rapport au half-duplex."},
+  {cat:"CCNA 1",label:"ccna1",topic:"DNS",q:"Quel service résout les noms de domaine en adresses IP ?",opts:["DHCP","ARP","DNS","NTP"],ans:2,exp:"DNS (Domain Name System) traduit les noms lisibles (www.cisco.com) en adresses IP numériques grâce à des serveurs de noms hiérarchiques."},
+
+  /* ══ CCNA 2 ══ */
+  {cat:"CCNA 2",label:"ccna2",topic:"Spanning Tree",q:"Quel protocole de Spanning Tree converge le plus rapidement ?",opts:["STP 802.1D","RSTP 802.1W","PVST+","MST 802.1S"],ans:1,exp:"RSTP (802.1W) converge en quelques secondes (vs 30-50 sec pour STP) grâce aux ports Alternate et Backup et à la négociation directe entre switches."},
+  {cat:"CCNA 2",label:"ccna2",topic:"Spanning Tree",q:"Quel est le rôle d'un port désigné dans STP ?",opts:["Bloquer tout le trafic","Transférer le trafic vers un segment","Élire le root bridge","Envoyer uniquement des BPDU"],ans:1,exp:"Le port désigné est élu pour transférer le trafic vers chaque segment réseau. Il y a un port désigné par segment ; il est en état Forwarding."},
+  {cat:"CCNA 2",label:"ccna2",topic:"VLAN",q:"Qu'est-ce qu'un VLAN ?",opts:["Un réseau physique séparé","Un domaine de broadcast logique dans un switch","Un protocole de routage","Un type de câble réseau"],ans:1,exp:"Un VLAN crée des domaines de broadcast logiquement isolés sur un même switch physique, améliorant la sécurité, les performances et la gestion."},
+  {cat:"CCNA 2",label:"ccna2",topic:"VLAN Trunk",q:"Quel standard IEEE permet le transport de plusieurs VLANs sur un lien trunk ?",opts:["STP","802.1Q","VTP","CDP"],ans:1,exp:"IEEE 802.1Q définit le marquage VLAN (tag de 4 octets inséré dans la trame Ethernet) permettant à plusieurs VLANs de coexister sur un lien trunk."},
+  {cat:"CCNA 2",label:"ccna2",topic:"VLAN",q:"Quelle commande Cisco crée un VLAN 10 nommé 'Sales' ?",opts:["vlan 10 / name Sales","switchport vlan 10 Sales","interface vlan 10 / name Sales","vlan database 10"],ans:0,exp:"En mode configuration globale : 'vlan 10' puis 'name Sales'. Ces commandes créent le VLAN et lui attribuent un nom descriptif."},
+  {cat:"CCNA 2",label:"ccna2",topic:"VLAN Trunk",q:"Qu'est-ce qu'un port trunk sur un switch Cisco ?",opts:["Port ne transportant qu'un VLAN","Port transportant plusieurs VLANs tagués","Port connecté à un PC utilisateur","Port de gestion réseau"],ans:1,exp:"Un port trunk transporte le trafic de plusieurs VLANs simultanément en utilisant l'encapsulation 802.1Q pour identifier chaque trame."},
+  {cat:"CCNA 2",label:"ccna2",topic:"VTP",q:"Quel protocole Cisco propage automatiquement les informations VLAN entre switches ?",opts:["STP","CDP","VTP","HSRP"],ans:2,exp:"VTP (VLAN Trunking Protocol) synchronise les bases de données VLAN depuis un serveur VTP vers les clients VTP sur les liens trunk."},
+  {cat:"CCNA 2",label:"ccna2",topic:"Routage",q:"Quel protocole de routage à états de liens est standardisé (non propriétaire) ?",opts:["RIP","EIGRP","OSPF","BGP"],ans:2,exp:"OSPF (Open Shortest Path First, RFC 2328) est le protocole link-state standard. EIGRP est propriétaire Cisco. BGP est un protocole de routage inter-domaines."},
+  {cat:"CCNA 2",label:"ccna2",topic:"RIP",q:"Quelle métrique utilise RIP pour sélectionner le meilleur chemin ?",opts:["Bande passante","Délai","Nombre de sauts (hop count)","Coût OSPF"],ans:2,exp:"RIPv1/v2 utilise le nombre de sauts comme unique métrique. Maximum = 15 sauts (16 = infini = réseau inaccessible)."},
+  {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Quel algorithme OSPF calcule le plus court chemin ?",opts:["Bellman-Ford","Dijkstra (SPF)","DUAL","Distance Vector"],ans:1,exp:"OSPF utilise l'algorithme SPF (Shortest Path First) de Dijkstra sur la base de données LSDB pour calculer l'arbre des chemins les plus courts."},
+  {cat:"CCNA 2",label:"ccna2",topic:"Routage",q:"Quelle est l'Administrative Distance d'une route statique Cisco par défaut ?",opts:["0","1","90","110"],ans:1,exp:"Routes directement connectées = AD 0, routes statiques = AD 1, EIGRP = 90, OSPF = 110. Plus l'AD est basse, plus la route est préférée."},
+  {cat:"CCNA 2",label:"ccna2",topic:"Routage",q:"Quelle commande configure une route par défaut sur un routeur Cisco ?",opts:["ip route 0.0.0.0 0.0.0.0 [next-hop]","ip default-route [next-hop]","ip route default 0.0.0.0 [next-hop]","route 0.0.0.0/0 [next-hop]"],ans:0,exp:"La commande 'ip route 0.0.0.0 0.0.0.0 [adresse-next-hop-ou-interface]' crée une route par défaut correspondant à toutes les destinations."},
+  {cat:"CCNA 2",label:"ccna2",topic:"Haute disponibilité",q:"Quel protocole Cisco assure la redondance de passerelle par défaut ?",opts:["STP","VTP","HSRP","OSPF"],ans:2,exp:"HSRP (Hot Standby Router Protocol) crée une IP virtuelle partagée entre deux routeurs. Si le routeur actif tombe, le routeur standby prend le relais automatiquement."},
+  {cat:"CCNA 2",label:"ccna2",topic:"Spanning Tree",q:"Quelle est la priorité bridge par défaut dans STP ?",opts:["1","4096","32768","65535"],ans:2,exp:"La priorité bridge par défaut est 32768. Le switch avec la priorité la plus basse (puis le BID le plus bas) devient root bridge. On peut la modifier par pas de 4096."},
+  {cat:"CCNA 2",label:"ccna2",topic:"ACL",q:"Quel type d'ACL filtre uniquement sur l'adresse IP source ?",opts:["ACL étendue (100-199)","ACL standard (1-99)","ACL nommée étendue","ACL dynamique"],ans:1,exp:"Les ACL standard (1-99 ou 1300-1999) filtrent uniquement sur l'adresse IP source. Les ACL étendues filtrent sur source, destination, protocole et ports."},
+  {cat:"CCNA 2",label:"ccna2",topic:"ACL",q:"Où recommande-t-on de placer une ACL étendue ?",opts:["Le plus proche de la destination","Le plus proche de la source","Au cœur du réseau","Sur le routeur de bordure uniquement"],ans:1,exp:"Les ACL étendues se placent le plus près de la source pour éviter que le trafic non souhaité traverse inutilement le réseau et consomme de la bande passante."},
+  {cat:"CCNA 2",label:"ccna2",topic:"VLAN",q:"Que configure la commande 'switchport mode access' ?",opts:["Le port en mode trunk multi-VLAN","Le port en mode accès (un seul VLAN)","Active STP sur le port","Désactive le port"],ans:1,exp:"'switchport mode access' configure le port pour appartenir à un seul VLAN non tagué, typiquement utilisé pour les équipements terminaux (PC, imprimantes)."},
+  {cat:"CCNA 2",label:"ccna2",topic:"VLAN",q:"Quel est le VLAN natif par défaut sur les switches Cisco ?",opts:["VLAN 0","VLAN 1","VLAN 100","VLAN 1001"],ans:1,exp:"Le VLAN natif par défaut est VLAN 1. Le trafic du VLAN natif traverse les liens trunk SANS marquage 802.1Q — c'est un vecteur de VLAN hopping si non modifié."},
+  {cat:"CCNA 2",label:"ccna2",topic:"EtherChannel",q:"Quelle technologie agrège plusieurs liens physiques en un seul lien logique ?",opts:["HSRP","EtherChannel","STP","VTP"],ans:1,exp:"EtherChannel (Port-Channel) regroupe jusqu'à 8 liens physiques en un seul lien logique, augmentant la bande passante et offrant la redondance sans STP bloquant."},
+  {cat:"CCNA 2",label:"ccna2",topic:"EtherChannel",q:"Quel protocole d'agrégation de liens est standardisé IEEE 802.3AD ?",opts:["PAgP","LACP","HSRP","RSTP"],ans:1,exp:"LACP (Link Aggregation Control Protocol, 802.3AD) est le standard ouvert. PAgP (Port Aggregation Protocol) est le protocole propriétaire Cisco."},
+  {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Quel type de protocole de routage est OSPF ?",opts:["Distance vector","Path vector","Link-state","Hybride"],ans:2,exp:"OSPF est un protocole link-state : chaque routeur maintient une LSDB complète de la topologie et calcule indépendamment les meilleurs chemins avec SPF."},
+  {cat:"CCNA 2",label:"ccna2",topic:"SVI",q:"Qu'est-ce qu'une interface SVI (Switched Virtual Interface) ?",opts:["Une interface physique d'un switch","Une interface Layer 3 virtuelle associée à un VLAN","Un tunnel GRE","Une interface loopback de routeur"],ans:1,exp:"Une SVI est une interface virtuelle Layer 3 associée à un VLAN sur un switch multicouche. Elle permet le routage inter-VLAN sans routeur externe."},
+  {cat:"CCNA 2",label:"ccna2",topic:"Switch L3",q:"Quelle commande active le routage IP sur un switch Cisco multicouche ?",opts:["ip routing","enable routing","router ip","switchport routing off"],ans:0,exp:"La commande 'ip routing' en mode de configuration globale active le routage IP sur un switch Layer 3 Cisco (ex: Catalyst 3560, 3750, 9300)."},
+  {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Qu'est-ce que le Router ID dans OSPF ?",opts:["L'adresse du voisin OSPF le plus proche","L'identifiant unique du routeur dans le domaine OSPF","La métrique du chemin OSPF","Le numéro d'aire OSPF"],ans:1,exp:"Le Router ID identifie de façon unique un routeur OSPF. Il est choisi : adresse loopback la plus haute, sinon adresse physique la plus haute, ou configuré manuellement."},
+  {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Quel état OSPF précède directement l'état 'Full' lors de l'établissement d'une adjacence ?",opts:["Init","2-Way","Loading","ExStart"],ans:2,exp:"Séquence : Down → Init → 2-Way → ExStart → Exchange → Loading → Full. En état Loading, le routeur demande les LSA manquants avant d'atteindre Full."},
+  {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Quelle commande Cisco affiche les voisins OSPF et leur état ?",opts:["show ip route ospf","show ip ospf neighbor","debug ip ospf events","show ospf topology"],ans:1,exp:"'show ip ospf neighbor' liste les voisins OSPF avec leur Router ID, état (Full, 2-Way...), temps mort et interface utilisée pour l'adjacence."}
+];
+
+let current = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+let startTime = Date.now();
+let reviewMode = false;
+let reviewList = [];
+
+/* ── Build dot nav ── */
+function buildDots(list) {
+  const nav = document.getElementById('dot-nav');
+  const qs = list || QUESTIONS;
+  nav.innerHTML = '';
+  qs.forEach((_, i) => {
+    const idx = reviewMode ? reviewList[i] : i;
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === current ? ' curr' : '') +
+      (answers[idx] !== null ? (answers[idx] === QUESTIONS[idx].ans ? ' ok' : ' fail') : '');
+    d.title = `Q${idx+1}`;
+    d.onclick = () => { current = i; render(); };
+    nav.appendChild(d);
+  });
+}
+
+/* ── Render current question ── */
+function render() {
+  const qs = reviewMode ? reviewList.map(i => QUESTIONS[i]) : QUESTIONS;
+  const total = qs.length;
+  const realIdx = reviewMode ? reviewList[current] : current;
+  const q = QUESTIONS[realIdx];
+
+  /* progress */
+  const pct = Math.round(((current+1)/total)*100);
+  document.getElementById('p-label').textContent = `Question ${current+1} / ${total}`;
+  document.getElementById('p-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  /* score live */
+  const answered = answers.filter(a => a !== null).length;
+  const correct = answers.filter((a,i) => a !== null && a === QUESTIONS[i].ans).length;
+  document.getElementById('score-live').textContent = answered > 0 ? `${correct}/${answered}` : '—';
+
+  /* question meta */
+  document.getElementById('q-num').textContent = 'Q' + String(realIdx+1).padStart(2,'0');
+  const badge = document.getElementById('q-badge');
+  badge.textContent = q.cat;
+  badge.className = 'q-badge ' + q.label;
+  document.getElementById('q-topic').textContent = q.topic;
+  document.getElementById('q-text').textContent = q.q;
+
+  /* options */
+  const optsEl = document.getElementById('options');
+  optsEl.innerHTML = '';
+  const keys = ['A','B','C','D'];
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    if (answers[realIdx] !== null) {
+      if (i === q.ans) btn.className += ' reveal';
+      if (i === answers[realIdx] && i !== q.ans) btn.className += ' wrong';
+      if (i === answers[realIdx] && i === q.ans) btn.className = 'opt correct';
+      btn.disabled = true;
+    }
+    btn.innerHTML = `<span class="opt-key">${keys[i]}.</span><span>${opt}</span>`;
+    btn.onclick = () => select(i, realIdx);
+    optsEl.appendChild(btn);
+  });
+
+  /* feedback */
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback';
+  if (answers[realIdx] !== null) {
+    const ok = answers[realIdx] === q.ans;
+    fb.className = 'feedback show ' + (ok ? 'ok' : 'ko');
+    fb.textContent = ok ? '✓ Bonne réponse !' : '✗ Mauvaise réponse — la bonne est ' + keys[q.ans];
+  }
+
+  /* explanation */
+  const exp = document.getElementById('explanation');
+  const expTxt = document.getElementById('exp-text');
+  if (answers[realIdx] !== null) {
+    expTxt.textContent = q.exp;
+    exp.className = 'explanation show';
+  } else {
+    exp.className = 'explanation';
+  }
+
+  /* nav buttons */
+  document.getElementById('prev-btn').disabled = current === 0;
+  const nextBtn = document.getElementById('next-btn');
+  if (current === total - 1) {
+    nextBtn.textContent = reviewMode ? '✓ Terminer la révision' : '✓ Voir les résultats';
+    nextBtn.onclick = reviewMode ? endReview : showResults;
+  } else {
+    nextBtn.textContent = 'Suivant →';
+    nextBtn.onclick = () => navigate(1);
+  }
+
+  buildDots(reviewMode ? reviewList.map(i => QUESTIONS[i]) : null);
+
+  /* scroll to top of card smoothly */
+  document.getElementById('q-card').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function select(i, realIdx) {
+  if (answers[realIdx] !== null) return;
+  answers[realIdx] = i;
+  render();
+}
+
+function navigate(dir) {
+  const total = reviewMode ? reviewList.length : QUESTIONS.length;
+  const next = current + dir;
+  if (next < 0 || next >= total) return;
+  current = next;
+  render();
+}
+
+/* ── Results ── */
+function showResults() {
+  const elapsed = Math.round((Date.now() - startTime) / 1000);
+  const mins = Math.floor(elapsed / 60);
+  const secs = elapsed % 60;
+
+  const correct = answers.filter((a,i) => a !== null && a === QUESTIONS[i].ans).length;
+  const wrong = answers.filter((a,i) => a !== null && a !== QUESTIONS[i].ans).length;
+  const unanswered = answers.filter(a => a === null).length;
+  const total = QUESTIONS.length;
+  const pct = Math.round((correct / total) * 100);
+
+  const ccna1 = QUESTIONS.filter(q => q.label === 'ccna1');
+  const ccna2 = QUESTIONS.filter(q => q.label === 'ccna2');
+  const ccna1c = ccna1.filter(q => { const i = QUESTIONS.indexOf(q); return answers[i] === q.ans; }).length;
+  const ccna2c = ccna2.filter(q => { const i = QUESTIONS.indexOf(q); return answers[i] === q.ans; }).length;
+
+  document.getElementById('r-pct').textContent = pct + '%';
+  document.getElementById('r-correct').textContent = correct;
+  document.getElementById('r-wrong').textContent = wrong;
+  document.getElementById('r-unanswered').textContent = unanswered;
+  document.getElementById('r-ccna1').textContent = `${ccna1c}/25`;
+  document.getElementById('r-ccna2').textContent = `${ccna2c}/25`;
+  document.getElementById('r-time').textContent = `${mins}m ${secs}s`;
+
+  const grade = document.getElementById('r-grade');
+  if (pct >= 85) { grade.textContent = '🎯 Excellent — Prêt pour la certification !'; grade.className = 'grade-badge grade-a'; }
+  else if (pct >= 70) { grade.textContent = '👍 Bien — Quelques révisions à faire'; grade.className = 'grade-badge grade-b'; }
+  else if (pct >= 50) { grade.textContent = '📚 Moyen — Révisions importantes'; grade.className = 'grade-badge grade-c'; }
+  else { grade.textContent = '🔄 Insuffisant — Reprendre les bases'; grade.className = 'grade-badge grade-d'; }
+
+  document.getElementById('quiz-view').style.display = 'none';
+  document.getElementById('result-view').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function reviewWrong() {
+  reviewList = answers.reduce((acc, a, i) => {
+    if (a === null || a !== QUESTIONS[i].ans) acc.push(i);
+    return acc;
+  }, []);
+  if (reviewList.length === 0) { alert('Félicitations, toutes les réponses sont correctes !'); return; }
+  reviewMode = true;
+  current = 0;
+  document.getElementById('result-view').style.display = 'none';
+  document.getElementById('quiz-view').style.display = 'block';
+  render();
+}
+
+function endReview() {
+  reviewMode = false;
+  reviewList = [];
+  current = 0;
+  showResults();
+}
+
+function restart() {
+  answers = new Array(QUESTIONS.length).fill(null);
+  current = 0;
+  startTime = Date.now();
+  reviewMode = false;
+  reviewList = [];
+  document.getElementById('result-view').style.display = 'none';
+  document.getElementById('quiz-view').style.display = 'block';
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ── Init ── */
+render();
+</script>
+</body>
+</html>
