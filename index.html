@@ -439,7 +439,6 @@
   }
 
   .grade-badge {
-    display: inline-block;
     padding: 8px 24px;
     border-radius: 100px;
     font-size: 14px;
@@ -485,6 +484,50 @@
   .result-actions {
     display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
   }
+
+  /* ── Icons (SVG inline, style trait) ── */
+  .icon {
+    width: 1.05em; height: 1.05em;
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: -0.16em;
+  }
+
+  .logo-icon .icon { width: 22px; height: 22px; color: #fff; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  }
+  .btn .icon { width: 16px; height: 16px; }
+
+  .tab {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .tab .icon { width: 16px; height: 16px; }
+
+  .feedback .icon { width: 16px; height: 16px; }
+
+  .grade-badge {
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .grade-badge .icon { width: 17px; height: 17px; }
+
+  .callout {
+    display: flex; align-items: flex-start; gap: 11px;
+  }
+  .callout .icon { width: 17px; height: 17px; margin-top: 2px; }
+
+  .qa-chevron {
+    width: 15px; height: 15px;
+    color: var(--accent1);
+    margin-top: 2px;
+    transition: transform 0.2s;
+  }
+  details.qa[open] .qa-chevron { transform: rotate(90deg); }
 
   /* ── Section tabs ── */
   .tabs {
@@ -719,11 +762,6 @@
 
   details.qa summary::-webkit-details-marker { display: none; }
   details.qa summary:hover { background: rgba(255,255,255,0.03); }
-  details.qa summary::before {
-    content: '▸'; color: var(--accent1);
-    flex-shrink: 0; transition: transform 0.2s;
-  }
-  details.qa[open] summary::before { transform: rotate(90deg); }
 
   .qa-body { padding: 0 1.35rem 1.2rem 2.65rem; }
   .qa-ans {
@@ -768,7 +806,7 @@
 
   <header>
     <div class="logo">
-      <div class="logo-icon">🌐</div>
+      <div class="logo-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg></div>
       <div>
         <div class="logo-text">CCNA QuizPro</div>
         <div class="logo-sub">Préparation Certifications</div>
@@ -782,8 +820,8 @@
   </header>
 
   <div class="tabs">
-    <button class="tab active" data-tab="quiz" onclick="switchTab('quiz')">📝 Quiz</button>
-    <button class="tab" data-tab="fiche" onclick="switchTab('fiche')">🛡️ Fiche Crise Cyber</button>
+    <button class="tab active" data-tab="quiz" onclick="switchTab('quiz')"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg><span>Quiz</span></button>
+    <button class="tab" data-tab="fiche" onclick="switchTab('fiche')"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><span>Fiche Crise Cyber</span></button>
   </div>
 
   <!-- QUIZ VIEW -->
@@ -831,8 +869,8 @@
     </div>
 
     <div class="nav-row">
-      <button class="btn" id="prev-btn" onclick="navigate(-1)">← Précédent</button>
-      <button class="btn primary" id="next-btn" onclick="navigate(1)">Suivant →</button>
+      <button class="btn" id="prev-btn" onclick="navigate(-1)"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg><span>Précédent</span></button>
+      <button class="btn primary" id="next-btn" onclick="navigate(1)"><span>Suivant</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
   </div>
 
@@ -843,7 +881,7 @@
       <div class="result-label" id="r-total-lbl">Score final</div>
       <div class="grade-badge" id="r-grade"></div>
       <div class="result-actions">
-        <button class="btn primary" onclick="restart()">↺ Recommencer</button>
+        <button class="btn primary" onclick="restart()"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg><span>Recommencer</span></button>
         <button class="btn" onclick="reviewWrong()">Revoir les erreurs</button>
       </div>
     </div>
@@ -980,9 +1018,10 @@
     </div>
 
     <div class="callout">
-      ⚠️ <strong>À retenir :</strong> la boîte à outils doit être conservée sur <strong>clé USB ou
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      <div><strong>À retenir :</strong> la boîte à outils doit être conservée sur <strong>clé USB ou
       serveur déconnecté</strong>, plus une <strong>version papier</strong> — le SI peut être
-      totalement indisponible le jour J.
+      totalement indisponible le jour J.</div>
     </div>
 
     <div class="step">
@@ -1066,8 +1105,9 @@
     </div>
 
     <div class="callout">
-      🚫 <strong>L'ANSSI recommande de NE PAS PAYER la rançon</strong> : cela ne garantit pas la
-      récupération des données et peut inciter à de nouvelles attaques (profil de « bon payeur »).
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+      <div><strong>L'ANSSI recommande de NE PAS PAYER la rançon</strong> : cela ne garantit pas la
+      récupération des données et peut inciter à de nouvelles attaques (profil de « bon payeur »).</div>
     </div>
 
     <!-- CHAPITRE 3 -->
@@ -1166,7 +1206,7 @@
     </div>
 
     <details class="qa">
-      <summary>1. Une entreprise de logistique découvre un rançongiciel un dimanche matin : écran de rançon avec compte à rebours sur tous les postes. Que doit faire en priorité la fonction communication ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>1. Une entreprise de logistique découvre un rançongiciel un dimanche matin : écran de rançon avec compte à rebours sur tous les postes. Que doit faire en priorité la fonction communication ?</summary>
       <div class="qa-body">
         <div class="qa-ans">Intégrer la cellule de crise, préparer en premier des éléments de langage internes pour rassurer les collaborateurs, puis adapter le discours externe selon l'évolution.</div>
         <div class="qa-why">La communication interne est souvent oubliée mais fondamentale. On communique de façon pédagogique et évolutive, sans attendre d'avoir 100 % des faits, ni tout dévoiler d'un coup.</div>
@@ -1174,7 +1214,7 @@
     </details>
 
     <details class="qa">
-      <summary>2. Une entreprise détecte qu'un attaquant est présent dans son SI depuis probablement plusieurs mois, sans qu'aucune donnée n'ait encore fuité publiquement. De quel type d'attaque s'agit-il, et quelle est la particularité de la communication ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>2. Une entreprise détecte qu'un attaquant est présent dans son SI depuis probablement plusieurs mois, sans qu'aucune donnée n'ait encore fuité publiquement. De quel type d'attaque s'agit-il, et quelle est la particularité de la communication ?</summary>
       <div class="qa-body">
         <div class="qa-ans">Espionnage. La décision de communiquer dépend d'une analyse de risque (visibilité, réputation) : le silence est une option possible.</div>
         <div class="qa-why">L'espionnage est discret, souvent détecté tardivement. Il faut évaluer si l'attaque risque de devenir visible et si l'attaquant est toujours actif, tout en préparant des éléments de langage prêts en cas de changement de posture.</div>
@@ -1182,7 +1222,7 @@
     </details>
 
     <details class="qa">
-      <summary>3. Un journaliste spécialisé demande : « Avez-vous payé la rançon ? » Quelle posture l'ANSSI recommande-t-elle, indépendamment de la réponse presse ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>3. Un journaliste spécialisé demande : « Avez-vous payé la rançon ? » Quelle posture l'ANSSI recommande-t-elle, indépendamment de la réponse presse ?</summary>
       <div class="qa-body">
         <div class="qa-ans">Ne pas payer la rançon.</div>
         <div class="qa-why">Le paiement ne garantit pas la récupération des données et peut inciter l'auteur (ou d'autres) à perpétrer une nouvelle attaque sur un « bon payeur ».</div>
@@ -1190,7 +1230,7 @@
     </details>
 
     <details class="qa">
-      <summary>4. Lors d'une crise cyber, on distingue 3 grands types de communication qui coexistent. Lesquels ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>4. Lors d'une crise cyber, on distingue 3 grands types de communication qui coexistent. Lesquels ?</summary>
       <div class="qa-body">
         <div class="qa-ans">Technique, institutionnelle, politique.</div>
         <div class="qa-why">Technique = factuelle/évolutive (équipes cyber). Institutionnelle = validée par le décideur. Politique = portée par les autorités. Le communicant coordonne ces fils de parole.</div>
@@ -1198,7 +1238,7 @@
     </details>
 
     <details class="qa">
-      <summary>5. Un hôpital est victime d'un rançongiciel qui paralyse le SI bureautique (pas les appareils médicaux). Que dit le guide sur la stratégie de communication cyber dans ce cas ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>5. Un hôpital est victime d'un rançongiciel qui paralyse le SI bureautique (pas les appareils médicaux). Que dit le guide sur la stratégie de communication cyber dans ce cas ?</summary>
       <div class="qa-body">
         <div class="qa-ans">Elle ne couvre que l'explication des causes cyber ; elle doit être complétée par une stratégie de gestion des impacts métiers (ex. retour au papier pour le suivi des patients).</div>
         <div class="qa-why">La stratégie de com cyber répond à une seule facette de la crise (les causes d'origine cyber) et ne remplace pas la gestion opérationnelle des impacts métiers.</div>
@@ -1206,7 +1246,7 @@
     </details>
 
     <details class="qa">
-      <summary>6. Quelle est la différence entre « attribution » et « imputation » d'une attaque informatique ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>6. Quelle est la différence entre « attribution » et « imputation » d'une attaque informatique ?</summary>
       <div class="qa-body">
         <div class="qa-ans">Attribution = décision politique désignant un commanditaire (souvent un État). Imputation = travail technique de caractérisation des TTP de l'attaquant, base de l'attribution.</div>
         <div class="qa-why">Distinction classique piège d'examen : l'imputation est le travail des experts techniques, l'attribution est la décision politique finale qui s'appuie dessus.</div>
@@ -1214,7 +1254,7 @@
     </details>
 
     <details class="qa">
-      <summary>7. Une entreprise subit un DDoS qui rend son site vitrine indisponible 3 h, sans perte de données. Quelle est la bonne approche de communication ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>7. Une entreprise subit un DDoS qui rend son site vitrine indisponible 3 h, sans perte de données. Quelle est la bonne approche de communication ?</summary>
       <div class="qa-body">
         <div class="qa-ans">Expliquer pédagogiquement que l'impact réel est limité, pour éviter un emballement médiatique disproportionné par rapport à la gravité technique.</div>
         <div class="qa-why">Les attaques de déstabilisation (DDoS, défiguration) ont un fort effet symbolique/médiatique malgré un impact technique souvent limité.</div>
@@ -1222,7 +1262,7 @@
     </details>
 
     <details class="qa">
-      <summary>8. Dans le dispositif de gestion de crise, à quelle cellule appartient généralement la fonction communication ?</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>8. Dans le dispositif de gestion de crise, à quelle cellule appartient généralement la fonction communication ?</summary>
       <div class="qa-body">
         <div class="qa-ans">La cellule stratégique, car les décisions engageant l'image et la réputation sont prises au niveau des décideurs.</div>
         <div class="qa-why">La cellule stratégique regroupe direction, métiers soutien (juridique, RH) et communication.</div>
@@ -1244,7 +1284,7 @@
     </div>
 
     <details class="qa">
-      <summary>Q1 — Identifiez quatre impacts majeurs de cette crise sur l'organisation (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q1 — Identifiez quatre impacts majeurs de cette crise sur l'organisation (2 pts)</summary>
       <div class="qa-body">
         <ul>
           <li><strong>Impact opérationnel</strong> : indisponibilité des serveurs de production → clients privés d'accès à leurs comptes et services bancaires.</li>
@@ -1257,7 +1297,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q2 — Cinq premières actions de la cellule de gestion de crise (3 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q2 — Cinq premières actions de la cellule de gestion de crise (3 pts)</summary>
       <div class="qa-body">
         <ul>
           <li><strong>Activer le dispositif de crise</strong> : mobiliser la cellule stratégique (décideurs) et la cellule opérationnelle (cyber/IT).</li>
@@ -1270,7 +1310,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q3 — Messages adaptés aux publics visés : collaborateurs, clients, médias (3 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q3 — Messages adaptés aux publics visés : collaborateurs, clients, médias (3 pts)</summary>
       <div class="qa-body">
         <ul>
           <li><strong>Clients</strong> : reconnaître l'incident de façon transparente, préciser les impacts concrets (accès temporairement indisponible), donner des consignes pratiques (vigilance face au phishing pouvant exploiter la crise), indiquer un canal de contact dédié, sans annoncer de date de résolution trop ferme.</li>
@@ -1281,7 +1321,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q4 — Pourquoi est-il déconseillé de payer la rançon ? (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q4 — Pourquoi est-il déconseillé de payer la rançon ? (2 pts)</summary>
       <div class="qa-body">
         <ul>
           <li>Le paiement ne garantit pas la récupération intacte des données (le déchiffrement peut échouer ou être partiel).</li>
@@ -1303,7 +1343,7 @@
     </div>
 
     <details class="qa">
-      <summary>Q1 — Quel type d'attaque est-ce et quelles sont ses caractéristiques ? (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q1 — Quel type d'attaque est-ce et quelles sont ses caractéristiques ? (2 pts)</summary>
       <div class="qa-body">
         <div class="qa-ans">Un déni de service distribué (DDoS), attaque de déstabilisation.</div>
         <div class="qa-why">Caractéristiques : impact technique généralement limité et détectable/stoppable assez rapidement, mais fort effet symbolique et émotionnel (impact réputation) car largement relayée sur les réseaux sociaux. Elle n'entraîne généralement pas de perte de données ni de destruction du SI, contrairement au rançongiciel.</div>
@@ -1311,7 +1351,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q2 — Quelle posture de communication adopter ? (3 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q2 — Quelle posture de communication adopter ? (3 pts)</summary>
       <div class="qa-body">
         <ul>
           <li><strong>Réagir rapidement mais sans surenchère</strong> : confirmer l'incident de façon factuelle dès que possible pour ne pas laisser le silence être interprété comme un aveu de faiblesse.</li>
@@ -1323,7 +1363,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q3 — Pourquoi ce type d'attaque est-il particulièrement sensible en communication ? (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q3 — Pourquoi ce type d'attaque est-il particulièrement sensible en communication ? (2 pts)</summary>
       <div class="qa-body">
         <div class="qa-why">Il existe un décalage fort entre la perception de l'incident (relayée et amplifiée par les médias/réseaux sociaux, avec un message militant) et la complexité technique réelle, souvent faible. En l'absence d'une communication adaptée et mesurée, l'attaque peut atteindre son but de déstabilisation en provoquant un emballement médiatique et social disproportionné par rapport à l'impact réel.</div>
       </div>
@@ -1338,7 +1378,7 @@
     </div>
 
     <details class="qa">
-      <summary>Q1 — De quel type d'attaque s'agit-il et quelles en sont les particularités ? (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q1 — De quel type d'attaque s'agit-il et quelles en sont les particularités ? (2 pts)</summary>
       <div class="qa-body">
         <div class="qa-ans">Une attaque d'espionnage : discrète, sophistiquée, pouvant durer plusieurs années avant d'être détectée.</div>
         <div class="qa-why">Contrairement au rançongiciel ou au DDoS (très visibles), elle vise l'exfiltration silencieuse d'informations stratégiques, sans dysfonctionnement visible des services.</div>
@@ -1346,7 +1386,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q2 — Quelles questions l'analyse de risque communicationnel doit-elle poser ? (3 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q2 — Quelles questions l'analyse de risque communicationnel doit-elle poser ? (3 pts)</summary>
       <div class="qa-body">
         <ul>
           <li>L'attaque risque-t-elle de devenir visible ? L'attaquant compte-t-il publier les données collectées ?</li>
@@ -1359,7 +1399,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q3 — Le silence est-il une option acceptable ici ? Justifiez. (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q3 — Le silence est-il une option acceptable ici ? Justifiez. (2 pts)</summary>
       <div class="qa-body">
         <div class="qa-ans">Oui, le silence est une option ouverte pour ce type d'attaque tant qu'elle n'est pas rendue publique.</div>
         <div class="qa-why">Cela revient pour l'entité à accepter le risque d'une fuite d'information sur le sujet, y compris des mois plus tard, et à assumer les conséquences d'une telle révélation. Dans tous les cas, des éléments de langage réactifs doivent être préparés à l'avance, prêts à être diffusés si la posture de communication venait à évoluer (données publiées par l'attaquant, fuite dans la presse).</div>
@@ -1375,7 +1415,7 @@
     </div>
 
     <details class="qa">
-      <summary>Q1 — Qualifiez la nature de l'attaque (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q1 — Qualifiez la nature de l'attaque (2 pts)</summary>
       <div class="qa-body">
         <div class="qa-ans">Une attaque par hameçonnage (phishing).</div>
         <div class="qa-why">Technique frauduleuse consistant à se faire passer pour un tiers de confiance (ici, l'assureur lui-même) afin d'inciter les victimes à communiquer des données personnelles et/ou bancaires. Cette technique peut être utilisée comme point d'entrée à la fois pour une attaque d'espionnage et pour une attaque de type rançongiciel.</div>
@@ -1383,7 +1423,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q2 — Quels messages transmettre en priorité aux clients ? (3 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q2 — Quels messages transmettre en priorité aux clients ? (3 pts)</summary>
       <div class="qa-body">
         <ul>
           <li><strong>Alerter clairement</strong> sur l'existence de la campagne frauduleuse et donner des exemples concrets pour reconnaître les faux e-mails.</li>
@@ -1395,7 +1435,7 @@
     </details>
 
     <details class="qa">
-      <summary>Q3 — Quelles démarches réglementaires envisager ? (2 pts)</summary>
+      <summary><svg class="icon qa-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"/></svg>Q3 — Quelles démarches réglementaires envisager ? (2 pts)</summary>
       <div class="qa-body">
         <div class="qa-why">Si des données personnelles de clients ont été compromises via leur propre réponse au phishing, une <strong>déclaration à la CNIL</strong> au titre du RGPD peut être nécessaire selon l'ampleur de la fuite. Un <strong>dépôt de plainte</strong> auprès des services spécialisés (police/gendarmerie) est également recommandé, ainsi qu'un <strong>signalement à Cybermalveillance.gouv.fr</strong> pour accompagner les victimes.</div>
       </div>
@@ -1521,6 +1561,23 @@ let startTime = Date.now();
 let reviewMode = false;
 let quizStage = "quiz"; /* "quiz" | "result" */
 
+/* ── Icônes SVG ── */
+const ICON_PATHS = {
+  "target": '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  "thumbs-up": '<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88"/>',
+  "book-open": '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+  "rotate-ccw": '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>',
+  "circle-check": '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  "circle-x": '<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
+  "check": '<path d="M20 6 9 17l-5-5"/>',
+  "chevron-right": '<path d="m9 18 6-6-6-6"/>'
+};
+
+function icon(name) {
+  return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+         ICON_PATHS[name] + '</svg>';
+}
+
 /* ── Décomptes dynamiques (pastilles) ── */
 function countOf(label) { return QUESTIONS.filter(q => q.label === label).length; }
 
@@ -1644,7 +1701,9 @@ function render() {
   if (answers[realIdx] !== null) {
     const ok = answers[realIdx] === q.ans;
     fb.className = "feedback show " + (ok ? "ok" : "ko");
-    fb.textContent = ok ? "✓ Bonne réponse !" : "✗ Mauvaise réponse — la bonne est " + keys[q.ans];
+    fb.innerHTML = ok
+      ? icon("circle-check") + "<span>Bonne réponse !</span>"
+      : icon("circle-x") + "<span>Mauvaise réponse — la bonne est " + keys[q.ans] + "</span>";
   }
 
   /* explanation */
@@ -1661,10 +1720,11 @@ function render() {
   document.getElementById("prev-btn").disabled = current === 0;
   const nextBtn = document.getElementById("next-btn");
   if (current === total - 1) {
-    nextBtn.textContent = reviewMode ? "✓ Terminer la révision" : "✓ Voir les résultats";
+    nextBtn.innerHTML = icon("check") +
+      "<span>" + (reviewMode ? "Terminer la révision" : "Voir les résultats") + "</span>";
     nextBtn.onclick = reviewMode ? endReview : showResults;
   } else {
-    nextBtn.textContent = "Suivant →";
+    nextBtn.innerHTML = "<span>Suivant</span>" + icon("chevron-right");
     nextBtn.onclick = () => navigate(1);
   }
 
@@ -1717,10 +1777,10 @@ function showResults() {
   document.getElementById("r-time").textContent = mins + "m " + secs + "s";
 
   const grade = document.getElementById("r-grade");
-  if (pct >= 85)      { grade.textContent = "🎯 Excellent — Prêt pour la certification !"; grade.className = "grade-badge grade-a"; }
-  else if (pct >= 70) { grade.textContent = "👍 Bien — Quelques révisions à faire";       grade.className = "grade-badge grade-b"; }
-  else if (pct >= 50) { grade.textContent = "📚 Moyen — Révisions importantes";           grade.className = "grade-badge grade-c"; }
-  else                { grade.textContent = "🔄 Insuffisant — Reprendre les bases";       grade.className = "grade-badge grade-d"; }
+  if (pct >= 85)      { grade.innerHTML = icon("target")    + "<span>Excellent — Prêt pour la certification !</span>"; grade.className = "grade-badge grade-a"; }
+  else if (pct >= 70) { grade.innerHTML = icon("thumbs-up") + "<span>Bien — Quelques révisions à faire</span>";           grade.className = "grade-badge grade-b"; }
+  else if (pct >= 50) { grade.innerHTML = icon("book-open") + "<span>Moyen — Révisions importantes</span>";               grade.className = "grade-badge grade-c"; }
+  else                { grade.innerHTML = icon("rotate-ccw")+ "<span>Insuffisant — Reprendre les bases</span>";           grade.className = "grade-badge grade-d"; }
 
   quizStage = "result";
   document.getElementById("quiz-view").style.display = "none";
