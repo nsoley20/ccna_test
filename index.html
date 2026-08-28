@@ -486,6 +486,264 @@
     display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
   }
 
+  /* ── Section tabs ── */
+  .tabs {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px;
+    margin-bottom: 1.5rem;
+  }
+
+  .tab {
+    flex: 1; min-width: 140px;
+    padding: 10px 16px;
+    border: none; background: transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .tab:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+  .tab.active {
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    color: #fff; font-weight: 600;
+  }
+
+  /* ── Deck selector ── */
+  .deck-bar {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .deck-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text3);
+    margin-right: 2px;
+  }
+
+  .deck-pill {
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .deck-pill:hover { border-color: rgba(59,130,246,0.5); color: var(--text); }
+  .deck-pill.active {
+    background: var(--accent1-dim);
+    border-color: rgba(59,130,246,0.6);
+    color: #93c5fd;
+  }
+
+  .q-badge.cyber {
+    background: var(--amber-dim); color: #fcd34d;
+    border: 1px solid rgba(245,158,11,0.35);
+  }
+
+  .stat-pill.amber {
+    border-color: rgba(245,158,11,0.4);
+    color: #fcd34d; background: var(--amber-dim);
+  }
+
+  /* ── Fiche de révision (Crise Cyber) ── */
+  #fiche-view { display: none; animation: fadeUp 0.25s ease; }
+
+  .fiche-hero {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .fiche-hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(245,158,11,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .fiche-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem; font-weight: 800;
+    margin-bottom: 0.35rem;
+  }
+
+  .fiche-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--amber);
+    margin-bottom: 0.6rem;
+  }
+
+  .fiche-lead { font-size: 13.5px; color: var(--text2); line-height: 1.75; }
+
+  .chap-head {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    background: linear-gradient(90deg, rgba(59,130,246,0.16), rgba(139,92,246,0.05));
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent1);
+    border-radius: var(--radius-sm);
+    padding: 13px 18px;
+    margin: 2rem 0 1rem;
+  }
+
+  .chap-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #93c5fd;
+  }
+
+  .chap-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1.02rem;
+  }
+
+  .block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .block h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem; font-weight: 700;
+    margin-bottom: 0.55rem; color: var(--text);
+  }
+
+  .block p { font-size: 13.5px; color: var(--text2); line-height: 1.75; }
+  .block ul { margin: 0.5rem 0 0 1.15rem; }
+  .block li { font-size: 13.5px; color: var(--text2); line-height: 1.75; margin-bottom: 5px; }
+  .block strong, .qa-body strong, .callout strong { color: var(--text); font-weight: 600; }
+
+  .step {
+    display: flex; gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.35rem;
+    margin-bottom: 10px;
+  }
+
+  .step-n {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--accent1-dim);
+    border: 1px solid rgba(59,130,246,0.35);
+    color: #93c5fd;
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .step.phase .step-n {
+    background: var(--accent2-dim);
+    border-color: rgba(139,92,246,0.35);
+    color: #c4b5fd;
+  }
+
+  .step-body h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.92rem; font-weight: 700;
+    margin-bottom: 5px; line-height: 1.4;
+  }
+
+  .step-body p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  .callout {
+    background: var(--amber-dim);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 13px 17px;
+    font-size: 13px; color: #fcd34d; line-height: 1.7;
+    margin: 1rem 0;
+  }
+
+  .callout strong { color: #fde68a; }
+
+  .gloss-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.35rem 1.1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+  }
+
+  .gloss { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .gloss td {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text2); line-height: 1.65;
+  }
+  .gloss tr:last-child td { border-bottom: none; }
+  .gloss td:first-child {
+    width: 34%; min-width: 130px;
+    color: var(--text); font-weight: 600;
+    font-family: 'Syne', sans-serif;
+  }
+
+  details.qa {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  details.qa summary {
+    padding: 1rem 1.35rem;
+    cursor: pointer;
+    font-size: 13.5px; font-weight: 600;
+    color: var(--text); line-height: 1.6;
+    list-style: none;
+    display: flex; gap: 10px; align-items: flex-start;
+    transition: background 0.2s;
+  }
+
+  details.qa summary::-webkit-details-marker { display: none; }
+  details.qa summary:hover { background: rgba(255,255,255,0.03); }
+  details.qa summary::before {
+    content: '▸'; color: var(--accent1);
+    flex-shrink: 0; transition: transform 0.2s;
+  }
+  details.qa[open] summary::before { transform: rotate(90deg); }
+
+  .qa-body { padding: 0 1.35rem 1.2rem 2.65rem; }
+  .qa-ans {
+    color: #6ee7b7; font-weight: 600;
+    font-size: 13.5px; line-height: 1.65; margin-bottom: 8px;
+  }
+  .qa-why { font-size: 13px; color: var(--text2); line-height: 1.75; }
+  .qa-body ul { margin: 0.45rem 0 0 1.15rem; }
+  .qa-body li { font-size: 13px; color: var(--text2); line-height: 1.75; margin-bottom: 6px; }
+
+  .case-ctx {
+    background: rgba(139,92,246,0.07);
+    border-left: 2px solid var(--accent2);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 12px 16px; margin-bottom: 1rem;
+    font-size: 13px; color: var(--text2); line-height: 1.75;
+  }
+
+  .case-ctx .exp-label { color: var(--accent2); }
+
   /* ── Responsive ── */
   @media (max-width: 600px) {
     .app { padding: 1rem 1rem 3rem; }
@@ -493,6 +751,10 @@
     .q-text { font-size: 1rem; }
     .result-pct { font-size: 3.5rem; }
     header { flex-direction: column; align-items: flex-start; }
+    .tab { min-width: 100%; }
+    .block, .step { padding: 1rem 1.1rem; }
+    .qa-body { padding-left: 1.35rem; }
+    .gloss td:first-child { width: 40%; }
   }
 
   /* ── Scrollbar ── */
@@ -513,13 +775,27 @@
       </div>
     </div>
     <div class="header-stats">
-      <span class="stat-pill blue">CCNA 1 — 25 questions</span>
-      <span class="stat-pill purple">CCNA 2 — 25 questions</span>
+      <span class="stat-pill blue" id="pill-ccna1">CCNA 1</span>
+      <span class="stat-pill purple" id="pill-ccna2">CCNA 2</span>
+      <span class="stat-pill amber" id="pill-cyber">Crise Cyber</span>
     </div>
   </header>
 
+  <div class="tabs">
+    <button class="tab active" data-tab="quiz" onclick="switchTab('quiz')">📝 Quiz</button>
+    <button class="tab" data-tab="fiche" onclick="switchTab('fiche')">🛡️ Fiche Crise Cyber</button>
+  </div>
+
   <!-- QUIZ VIEW -->
   <div id="quiz-view">
+
+    <div class="deck-bar">
+      <span class="deck-lbl">Série</span>
+      <button class="deck-pill active" data-deck="all" onclick="setDeck('all')">Tout</button>
+      <button class="deck-pill" data-deck="ccna1" onclick="setDeck('ccna1')">CCNA 1</button>
+      <button class="deck-pill" data-deck="ccna2" onclick="setDeck('ccna2')">CCNA 2</button>
+      <button class="deck-pill" data-deck="cyber" onclick="setDeck('cyber')">Crise Cyber</button>
+    </div>
 
     <div class="progress-zone">
       <div class="progress-track">
@@ -564,7 +840,7 @@
   <div id="result-view">
     <div class="result-hero">
       <div class="result-pct" id="r-pct">0%</div>
-      <div class="result-label">Score final sur 50 questions</div>
+      <div class="result-label" id="r-total-lbl">Score final</div>
       <div class="grade-badge" id="r-grade"></div>
       <div class="result-actions">
         <button class="btn primary" onclick="restart()">↺ Recommencer</button>
@@ -586,18 +862,545 @@
         <div class="rs-lbl">Sans réponse</div>
       </div>
       <div class="result-stat">
-        <div class="rs-num" id="r-ccna1">0/25</div>
+        <div class="rs-num" id="r-ccna1">—</div>
         <div class="rs-lbl">CCNA 1</div>
       </div>
       <div class="result-stat">
-        <div class="rs-num" id="r-ccna2">0/25</div>
+        <div class="rs-num" id="r-ccna2">—</div>
         <div class="rs-lbl">CCNA 2</div>
+      </div>
+      <div class="result-stat">
+        <div class="rs-num" id="r-cyber" style="color:#fcd34d">—</div>
+        <div class="rs-lbl">Crise Cyber</div>
       </div>
       <div class="result-stat">
         <div class="rs-num" id="r-time" style="color:var(--amber)">—</div>
         <div class="rs-lbl">Temps total</div>
       </div>
     </div>
+  </div>
+
+  <!-- FICHE CRISE CYBER -->
+  <div id="fiche-view">
+
+    <div class="fiche-hero">
+      <div class="fiche-kicker">Fiche de révision</div>
+      <div class="fiche-title">Gestion de Crise Cyber</div>
+      <div class="fiche-lead">
+        Master 1 Cybersécurité Réseaux Cloud — synthèse du guide ANSSI/CIGREF de gestion de crise
+        d'origine cyber : anticipation, réaction, gestion opérationnelle, glossaire et cas pratiques
+        type examen.
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Qu'est-ce qu'une crise cyber ?</h4>
+      <p>
+        Une crise « <strong>d'origine cyber</strong> » se définit par la <strong>déstabilisation
+        immédiate et majeure</strong> du fonctionnement courant d'une organisation (arrêt des
+        activités, impossibilité de délivrer des services, pertes financières lourdes, perte
+        d'intégrité majeure) en raison d'<strong>actions malveillantes</strong> sur ses services et
+        outils numériques (rançongiciel, déni de service, etc.). C'est un événement à fort impact
+        qui <strong>ne peut être traité par les processus habituels</strong> de l'organisation.
+      </p>
+    </div>
+
+    <div class="block">
+      <h4>Spécificités des crises cyber</h4>
+      <ul>
+        <li><strong>Double temporalité</strong> : impacts immédiats + remédiation longue (semaines/mois)</li>
+        <li><strong>Absence d'unicité de lieu</strong> : propagation possible à d'autres organisations (interconnexion des SI)</li>
+        <li>Une <strong>menace qui s'adapte</strong> aux mesures d'endiguement</li>
+        <li><strong>Incertitude</strong> sur le périmètre de compromission</li>
+        <li>Complexité pour comprendre les objectifs de l'attaquant et <strong>attribuer</strong> l'origine de l'attaque</li>
+      </ul>
+    </div>
+
+    <!-- CHAPITRE 1 -->
+    <div class="chap-head">
+      <span class="chap-num">Chapitre 1</span>
+      <span class="chap-title">En anticipation — 7 étapes</span>
+    </div>
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h4>Initier un dialogue avec les équipes cyber et IT hors période de crise</h4>
+        <p>Comprendre en amont les priorités, enjeux et le langage de chaque métier (RSSI, DSI).
+        Recommandation : ateliers, campagne de sensibilisation (Cybermoi/s), exercices.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h4>Anticiper les scénarios de crise et les réponses communication</h4>
+        <p>Chaque type d'attaque (espionnage discret vs rançongiciel/DDoS très visibles) appelle une
+        réponse différente. Le contexte compte aussi (résultats financiers, négociations, élections).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h4>Concevoir sa stratégie de communication de réponse à la crise cyber</h4>
+        <p>7 sous-étapes : 1) Contexte — 2) Objectifs (expliquer, rassurer, préserver l'image) —
+        3) Cibles (internes/externes) — 4) Parties prenantes — 5) Porte-parole — 6) Postures &amp;
+        messages — 7) Organisation &amp; outils.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <h4>Intégrer la fonction communication dans l'organisation de la gestion de crise</h4>
+        <p>Rôles du communicant : <strong>Alerter</strong>, <strong>Réagir rapidement</strong>,
+        <strong>Analyser et s'adapter</strong>. Cellule stratégique (direction + métiers soutien)
+        vs cellules opérationnelles/techniques.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">5</div>
+      <div class="step-body">
+        <h4>Organiser la communication de crise</h4>
+        <p>3 postes clés : <strong>Coordination</strong> (lien cellules ↔ parties prenantes) ;
+        <strong>Veille et perception</strong> (médias, réseaux sociaux) ; <strong>Réaction</strong>
+        (relations presse, réseaux sociaux, site web, interne).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">6</div>
+      <div class="step-body">
+        <h4>Créer une boîte à outils dédiée à la gestion d'une crise cyber</h4>
+        <p>Contenu : stratégie de com, schéma du dispositif de crise, outils de pilotage (fichier
+        presse, codes d'accès, annuaires), glossaire et éléments de langage.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      ⚠️ <strong>À retenir :</strong> la boîte à outils doit être conservée sur <strong>clé USB ou
+      serveur déconnecté</strong>, plus une <strong>version papier</strong> — le SI peut être
+      totalement indisponible le jour J.
+    </div>
+
+    <div class="step">
+      <div class="step-n">7</div>
+      <div class="step-body">
+        <h4>Former ses équipes à la gestion du volet communication</h4>
+        <p>3 types d'exercices : exercice global (tout le dispositif), exercice communication seule,
+        exercice avec participants externes (autorités, clients). Simuler la pression médiatique.</p>
+      </div>
+    </div>
+
+    <!-- CHAPITRE 2 -->
+    <div class="chap-head">
+      <span class="chap-num">Chapitre 2</span>
+      <span class="chap-title">En réaction — 6 étapes</span>
+    </div>
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h4>Intégrer la cellule de gestion de crise</h4>
+        <p>Double objectif : comprendre la situation dans son ensemble (technique + impacts métiers)
+        et partager les éléments de perception (réactions internes, médiatiques, politiques).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h4>Réaliser son analyse de risque en matière de communication</h4>
+        <p>S'appuyer sur : faits constatés, contexte (actualité sectorielle), réactions
+        actuelles/anticipées. <strong>Ne pas communiquer est une option ouverte</strong>
+        (ex. actualité forte de l'entité en cours).</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h4>Préparer des éléments de langage adaptés aux publics visés</h4>
+        <p>Adapter le niveau/qualité d'info, la technicité et le rythme de transmission. Occuper
+        l'espace médiatique pour éviter que d'autres parlent à votre place. Ton : pédagogique,
+        rassurant, empathique.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <h4>Coordonner la communication de son organisation</h4>
+        <p>3 types de communication : <strong>technique</strong> (factuelle, évolutive),
+        <strong>institutionnelle</strong> (validée par le décideur), <strong>politique</strong>
+        (portée par les autorités). Le communicant coordonne tous les fils de parole.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">5</div>
+      <div class="step-body">
+        <h4>Prendre en charge la communication institutionnelle</h4>
+        <p>Communication interne (rassurer, consignes pratiques) et externe (porte-parole,
+        communiqué de presse, réseaux sociaux) — ne pas multiplier les porteurs du message officiel.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">6</div>
+      <div class="step-body">
+        <h4>Saisir une opportunité et capitaliser</h4>
+        <p>Une fois la crise sous contrôle : identifier les axes d'amélioration, lancer une campagne
+        de sensibilisation interne/externe, partager son retour d'expérience.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>À retenir : le rançongiciel</h4>
+      <p><strong>Tempo</strong> : attaque visible immédiatement, remédiation longue et incertaine.
+      <strong>Impact émotionnel fort</strong> (message anxiogène, menace de divulgation). Les outils
+      classiques sont souvent paralysés → prévoir des <strong>canaux dégradés</strong> (listing
+      téléphonique, affichage).</p>
+    </div>
+
+    <div class="callout">
+      🚫 <strong>L'ANSSI recommande de NE PAS PAYER la rançon</strong> : cela ne garantit pas la
+      récupération des données et peut inciter à de nouvelles attaques (profil de « bon payeur »).
+    </div>
+
+    <!-- CHAPITRE 3 -->
+    <div class="chap-head">
+      <span class="chap-num">Chapitre 3</span>
+      <span class="chap-title">Gestion opérationnelle &amp; stratégique</span>
+    </div>
+
+    <div class="block">
+      <h4>Partie 1 — Se préparer</h4>
+      <ul>
+        <li><strong>Connaître et maîtriser ses SI</strong> : cartographie des applications/services critiques, des interdépendances, des parties prenantes, politique de rétention des logs</li>
+        <li>Mettre en place un <strong>socle de capacités opérationnelles</strong> (résilience numérique) adapté aux scénarios cyber</li>
+        <li>Formaliser une <strong>stratégie de communication</strong> de crise cyber</li>
+        <li><strong>Adapter son organisation de crise</strong> : cellule stratégique + volet opérationnel (cyber/IT) + cellules métiers/RH/juridique/logistique selon besoin</li>
+        <li>Préparer ses <strong>capacités de réponse à incident</strong> (CERT/CSIRT, prestataires, pré-contractualisation)</li>
+        <li>Mettre en place des <strong>polices d'assurance cyber</strong> adaptées</li>
+        <li><strong>S'entraîner régulièrement</strong> (stratégie d'entraînement pluriannuelle, complexité progressive)</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h4>Partie 2 — Réagir : les 4 grandes phases</h4>
+      <p>Les phases peuvent se chevaucher. Les équipes doivent s'organiser pour une
+      <strong>épreuve d'endurance</strong> (plusieurs semaines/mois), pas un sprint.</p>
+    </div>
+
+    <div class="step phase">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h4>Alerter, mobiliser, endiguer</h4>
+        <p>Mobiliser le dispositif de crise, mettre en place les premières mesures d'endiguement et
+        de continuité d'activité, alerter les réseaux de soutien (CERT, assureurs, autorités).</p>
+      </div>
+    </div>
+
+    <div class="step phase">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h4>Maintenir la confiance et comprendre l'attaque</h4>
+        <p>Communiquer pour rassurer les parties prenantes ; conduire l'investigation numérique pour
+        déterminer le périmètre de compromission et prioriser la remédiation.</p>
+      </div>
+    </div>
+
+    <div class="step phase">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h4>Durcir, restaurer, surveiller</h4>
+        <p>Durcir les systèmes, restaurer applications et données critiques sur des bases saines,
+        surveiller l'attaquant pour reprendre le cœur des activités.</p>
+      </div>
+    </div>
+
+    <div class="step phase">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <h4>Revenir à la normale</h4>
+        <p>Retour à la normale et retour d'expérience (RETEX) — capitaliser sur la crise pour progresser.</p>
+      </div>
+    </div>
+
+    <!-- GLOSSAIRE -->
+    <div class="chap-head">
+      <span class="chap-num">Référence</span>
+      <span class="chap-title">Glossaire essentiel</span>
+    </div>
+
+    <div class="gloss-wrap">
+      <table class="gloss">
+        <tr><td>Cybersécurité</td><td>Capacité à résister aux événements du cyberespace compromettant disponibilité, intégrité ou confidentialité des données/services.</td></tr>
+        <tr><td>Défiguration</td><td>Altération de l'apparence d'un site Internet par un pirate (contenu, slogans, images).</td></tr>
+        <tr><td>DoS / DDoS</td><td>Attaque(s) visant à rendre un service indisponible par saturation de requêtes.</td></tr>
+        <tr><td>Espionnage</td><td>Intrusion discrète et durable (parfois plusieurs années) visant à exfiltrer de l'information stratégique.</td></tr>
+        <tr><td>Hameçonnage (phishing)</td><td>Technique frauduleuse se faisant passer pour un tiers de confiance pour obtenir des données personnelles/bancaires.</td></tr>
+        <tr><td>Rançongiciel (ransomware)</td><td>Logiciel malveillant chiffrant les données (y compris les sauvegardes) contre une rançon ; souvent assorti d'une menace de divulgation.</td></tr>
+        <tr><td>Attribution</td><td>Décision <strong>POLITIQUE</strong>, au plus haut niveau, désignant le commanditaire (souvent un État) d'une attaque.</td></tr>
+        <tr><td>Imputation</td><td>Travail <strong>TECHNIQUE</strong> de caractérisation des outils/techniques/tactiques (TTP) de l'attaquant, base de l'attribution.</td></tr>
+        <tr><td>Code malveillant (malware)</td><td>Programme développé pour nuire à un SI (virus, vers, etc.).</td></tr>
+        <tr><td>Marqueur technique (IOC)</td><td>Indicateur de compromission (ex. IP malveillante) permettant de détecter/caractériser une attaque.</td></tr>
+        <tr><td>Mode opératoire (MOA)</td><td>« Signature » de l'attaquant, sa façon d'opérer pour cibler et attaquer ses victimes.</td></tr>
+        <tr><td>RGPD</td><td>Règlement encadrant le traitement des données personnelles dans l'UE ; la CNIL traite les plaintes.</td></tr>
+        <tr><td>Vecteur d'attaque</td><td>Moyen d'accès exploité par l'attaquant (pièce jointe, page web, vulnérabilité non corrigée).</td></tr>
+        <tr><td>Vulnérabilité</td><td>Faille de sécurité (logiciel, SI, matériel) pouvant servir de porte d'entrée.</td></tr>
+      </table>
+    </div>
+
+    <!-- CAS PRATIQUES -->
+    <div class="chap-head">
+      <span class="chap-num">Entraînement</span>
+      <span class="chap-title">Cas pratiques — questions type examen</span>
+    </div>
+
+    <div class="block">
+      <p>Clique sur une question pour révéler la réponse et l'explication.</p>
+    </div>
+
+    <details class="qa">
+      <summary>1. Une entreprise de logistique découvre un rançongiciel un dimanche matin : écran de rançon avec compte à rebours sur tous les postes. Que doit faire en priorité la fonction communication ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Intégrer la cellule de crise, préparer en premier des éléments de langage internes pour rassurer les collaborateurs, puis adapter le discours externe selon l'évolution.</div>
+        <div class="qa-why">La communication interne est souvent oubliée mais fondamentale. On communique de façon pédagogique et évolutive, sans attendre d'avoir 100 % des faits, ni tout dévoiler d'un coup.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>2. Une entreprise détecte qu'un attaquant est présent dans son SI depuis probablement plusieurs mois, sans qu'aucune donnée n'ait encore fuité publiquement. De quel type d'attaque s'agit-il, et quelle est la particularité de la communication ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Espionnage. La décision de communiquer dépend d'une analyse de risque (visibilité, réputation) : le silence est une option possible.</div>
+        <div class="qa-why">L'espionnage est discret, souvent détecté tardivement. Il faut évaluer si l'attaque risque de devenir visible et si l'attaquant est toujours actif, tout en préparant des éléments de langage prêts en cas de changement de posture.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>3. Un journaliste spécialisé demande : « Avez-vous payé la rançon ? » Quelle posture l'ANSSI recommande-t-elle, indépendamment de la réponse presse ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Ne pas payer la rançon.</div>
+        <div class="qa-why">Le paiement ne garantit pas la récupération des données et peut inciter l'auteur (ou d'autres) à perpétrer une nouvelle attaque sur un « bon payeur ».</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>4. Lors d'une crise cyber, on distingue 3 grands types de communication qui coexistent. Lesquels ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Technique, institutionnelle, politique.</div>
+        <div class="qa-why">Technique = factuelle/évolutive (équipes cyber). Institutionnelle = validée par le décideur. Politique = portée par les autorités. Le communicant coordonne ces fils de parole.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>5. Un hôpital est victime d'un rançongiciel qui paralyse le SI bureautique (pas les appareils médicaux). Que dit le guide sur la stratégie de communication cyber dans ce cas ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Elle ne couvre que l'explication des causes cyber ; elle doit être complétée par une stratégie de gestion des impacts métiers (ex. retour au papier pour le suivi des patients).</div>
+        <div class="qa-why">La stratégie de com cyber répond à une seule facette de la crise (les causes d'origine cyber) et ne remplace pas la gestion opérationnelle des impacts métiers.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>6. Quelle est la différence entre « attribution » et « imputation » d'une attaque informatique ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Attribution = décision politique désignant un commanditaire (souvent un État). Imputation = travail technique de caractérisation des TTP de l'attaquant, base de l'attribution.</div>
+        <div class="qa-why">Distinction classique piège d'examen : l'imputation est le travail des experts techniques, l'attribution est la décision politique finale qui s'appuie dessus.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>7. Une entreprise subit un DDoS qui rend son site vitrine indisponible 3 h, sans perte de données. Quelle est la bonne approche de communication ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Expliquer pédagogiquement que l'impact réel est limité, pour éviter un emballement médiatique disproportionné par rapport à la gravité technique.</div>
+        <div class="qa-why">Les attaques de déstabilisation (DDoS, défiguration) ont un fort effet symbolique/médiatique malgré un impact technique souvent limité.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>8. Dans le dispositif de gestion de crise, à quelle cellule appartient généralement la fonction communication ?</summary>
+      <div class="qa-body">
+        <div class="qa-ans">La cellule stratégique, car les décisions engageant l'image et la réputation sont prises au niveau des décideurs.</div>
+        <div class="qa-why">La cellule stratégique regroupe direction, métiers soutien (juridique, RH) et communication.</div>
+      </div>
+    </details>
+
+    <!-- ÉTUDES DE CAS -->
+    <div class="chap-head">
+      <span class="chap-num">Études de cas</span>
+      <span class="chap-title">Sujets longs corrigés</span>
+    </div>
+
+    <div class="case-ctx">
+      <div class="exp-label">Cas 1 — Banque victime d'un rançongiciel</div>
+      Une banque est victime d'un rançongiciel un samedi à 3 h du matin. Les serveurs de production
+      sont chiffrés, les clients ne peuvent plus accéder à leurs comptes en agence ni via les
+      réseaux, et plusieurs médias commencent à publier des informations sur l'incident, tandis que
+      les équipes techniques sont mobilisées pour analyser l'attaque.
+    </div>
+
+    <details class="qa">
+      <summary>Q1 — Identifiez quatre impacts majeurs de cette crise sur l'organisation (2 pts)</summary>
+      <div class="qa-body">
+        <ul>
+          <li><strong>Impact opérationnel</strong> : indisponibilité des serveurs de production → clients privés d'accès à leurs comptes et services bancaires.</li>
+          <li><strong>Impact réputationnel</strong> : perte de confiance des clients et du public, image dégradée, amplifiée par la couverture médiatique et les réseaux sociaux.</li>
+          <li><strong>Impact financier</strong> : coûts de remédiation, pertes d'exploitation, éventuelles indemnisations aux clients impactés.</li>
+          <li><strong>Impact réglementaire/juridique</strong> : obligations de notification (CNIL en cas de données personnelles compromises), contrôle possible du régulateur bancaire, dépôt de plainte.</li>
+        </ul>
+        <div class="qa-why" style="margin-top:10px"><strong>Méthode :</strong> toujours couvrir un impact technique/opérationnel, un impact image/réputation, un impact financier et un impact juridique/réglementaire — c'est la grille attendue par le correcteur.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q2 — Cinq premières actions de la cellule de gestion de crise (3 pts)</summary>
+      <div class="qa-body">
+        <ul>
+          <li><strong>Activer le dispositif de crise</strong> : mobiliser la cellule stratégique (décideurs) et la cellule opérationnelle (cyber/IT).</li>
+          <li><strong>Endiguer l'attaque</strong> : isoler ou couper les systèmes touchés pour stopper la propagation du rançongiciel.</li>
+          <li><strong>Alerter les réseaux de soutien</strong> : CERT, prestataires, assureur cyber, autorités compétentes (ANSSI, régulateur bancaire), dépôt de plainte.</li>
+          <li><strong>Mettre en place une veille</strong> médiatique et sur les réseaux sociaux pour suivre les réactions et adapter la posture de communication.</li>
+          <li><strong>Préparer et diffuser un premier message</strong> (interne puis externe) pour informer et rassurer, même sans disposer de tous les détails techniques.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q3 — Messages adaptés aux publics visés : collaborateurs, clients, médias (3 pts)</summary>
+      <div class="qa-body">
+        <ul>
+          <li><strong>Clients</strong> : reconnaître l'incident de façon transparente, préciser les impacts concrets (accès temporairement indisponible), donner des consignes pratiques (vigilance face au phishing pouvant exploiter la crise), indiquer un canal de contact dédié, sans annoncer de date de résolution trop ferme.</li>
+          <li><strong>Collaborateurs</strong> : expliquer la situation de façon pédagogique, donner des consignes de travail en mode dégradé, rassurer sur la prise en charge effective de la crise par la direction, éviter la panique et les rumeurs internes.</li>
+          <li><strong>Médias</strong> : communiqué factuel et mesuré diffusé via un porte-parole unique désigné, présentant la nature de l'incident et les actions engagées, sans détails techniques sensibles pouvant compromettre l'investigation ou être soumis au secret de l'enquête.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q4 — Pourquoi est-il déconseillé de payer la rançon ? (2 pts)</summary>
+      <div class="qa-body">
+        <ul>
+          <li>Le paiement ne garantit pas la récupération intacte des données (le déchiffrement peut échouer ou être partiel).</li>
+          <li>Il peut inciter l'attaquant (ou d'autres groupes) à cibler à nouveau l'organisation, identifiée comme « bon payeur ».</li>
+          <li>Il ne dispense pas des travaux nécessaires à la remise en service sécurisée du SI ni du renforcement de la sécurité pour éviter une récidive.</li>
+          <li>Il peut financer indirectement des activités criminelles, avec un risque juridique et réputationnel supplémentaire.</li>
+        </ul>
+        <div class="qa-why" style="margin-top:10px"><strong>Position officielle à citer :</strong> l'ANSSI recommande de ne pas payer la rançon.</div>
+      </div>
+    </details>
+
+    <div class="case-ctx">
+      <div class="exp-label">Cas 2 — Attaque par déni de service (DDoS)</div>
+      Une entreprise de e-commerce voit son site Internet devenir totalement inaccessible pendant
+      4 heures un lundi matin, en pleine période de soldes. Un groupe d'hacktivistes revendique
+      l'attaque sur les réseaux sociaux en critiquant les pratiques commerciales de l'entreprise.
+      Aucune donnée n'a été volée ni chiffrée : il s'agit d'une saturation des serveurs par un flot
+      massif de requêtes.
+    </div>
+
+    <details class="qa">
+      <summary>Q1 — Quel type d'attaque est-ce et quelles sont ses caractéristiques ? (2 pts)</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Un déni de service distribué (DDoS), attaque de déstabilisation.</div>
+        <div class="qa-why">Caractéristiques : impact technique généralement limité et détectable/stoppable assez rapidement, mais fort effet symbolique et émotionnel (impact réputation) car largement relayée sur les réseaux sociaux. Elle n'entraîne généralement pas de perte de données ni de destruction du SI, contrairement au rançongiciel.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q2 — Quelle posture de communication adopter ? (3 pts)</summary>
+      <div class="qa-body">
+        <ul>
+          <li><strong>Réagir rapidement mais sans surenchère</strong> : confirmer l'incident de façon factuelle dès que possible pour ne pas laisser le silence être interprété comme un aveu de faiblesse.</li>
+          <li><strong>Expliquer pédagogiquement</strong> la nature réelle, souvent modérée, de l'impact technique (indisponibilité temporaire, pas de fuite de données) pour éviter l'emballement médiatique.</li>
+          <li><strong>Ne pas alimenter la polémique</strong> portée par les hacktivistes : rester factuel, éviter tout ton défensif ou polémique sur les réseaux sociaux.</li>
+          <li><strong>Informer les clients</strong> sur les canaux alternatifs disponibles (téléphone, points de vente) pendant l'indisponibilité du site.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q3 — Pourquoi ce type d'attaque est-il particulièrement sensible en communication ? (2 pts)</summary>
+      <div class="qa-body">
+        <div class="qa-why">Il existe un décalage fort entre la perception de l'incident (relayée et amplifiée par les médias/réseaux sociaux, avec un message militant) et la complexité technique réelle, souvent faible. En l'absence d'une communication adaptée et mesurée, l'attaque peut atteindre son but de déstabilisation en provoquant un emballement médiatique et social disproportionné par rapport à l'impact réel.</div>
+      </div>
+    </details>
+
+    <div class="case-ctx">
+      <div class="exp-label">Cas 3 — Attaque d'espionnage industriel</div>
+      Une entreprise industrielle découvre, à l'occasion d'un audit de routine, qu'un attaquant était
+      présent dans son système d'information depuis environ 18 mois. L'attaquant a probablement
+      exfiltré des documents techniques stratégiques (brevets, plans de fabrication). Aucune donnée
+      n'a pour l'instant été publiée et l'incident n'est pas connu du public ni des médias.
+    </div>
+
+    <details class="qa">
+      <summary>Q1 — De quel type d'attaque s'agit-il et quelles en sont les particularités ? (2 pts)</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Une attaque d'espionnage : discrète, sophistiquée, pouvant durer plusieurs années avant d'être détectée.</div>
+        <div class="qa-why">Contrairement au rançongiciel ou au DDoS (très visibles), elle vise l'exfiltration silencieuse d'informations stratégiques, sans dysfonctionnement visible des services.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q2 — Quelles questions l'analyse de risque communicationnel doit-elle poser ? (3 pts)</summary>
+      <div class="qa-body">
+        <ul>
+          <li>L'attaque risque-t-elle de devenir visible ? L'attaquant compte-t-il publier les données collectées ?</li>
+          <li>Qui dois-je informer (interne, autorités, clients/partenaires potentiellement concernés) ?</li>
+          <li>Faut-il communiquer largement, en interne, en externe, ou choisir le silence pour l'instant ?</li>
+          <li>Que risque l'organisation en termes de réputation si elle dévoile cette attaque ?</li>
+          <li>À quel moment faut-il en parler ? L'attaquant est-il toujours actif dans le SI ?</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q3 — Le silence est-il une option acceptable ici ? Justifiez. (2 pts)</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Oui, le silence est une option ouverte pour ce type d'attaque tant qu'elle n'est pas rendue publique.</div>
+        <div class="qa-why">Cela revient pour l'entité à accepter le risque d'une fuite d'information sur le sujet, y compris des mois plus tard, et à assumer les conséquences d'une telle révélation. Dans tous les cas, des éléments de langage réactifs doivent être préparés à l'avance, prêts à être diffusés si la posture de communication venait à évoluer (données publiées par l'attaquant, fuite dans la presse).</div>
+      </div>
+    </details>
+
+    <div class="case-ctx">
+      <div class="exp-label">Cas 4 — Campagne de hameçonnage ciblant les clients</div>
+      Une compagnie d'assurance constate qu'une vague de faux e-mails, imitant parfaitement sa charte
+      graphique, est envoyée à ses clients pour leur soutirer leurs identifiants de connexion et
+      leurs coordonnées bancaires. Certains clients ont déjà signalé avoir communiqué leurs
+      informations. Le SI interne de l'assureur n'est, à ce stade, pas directement compromis.
+    </div>
+
+    <details class="qa">
+      <summary>Q1 — Qualifiez la nature de l'attaque (2 pts)</summary>
+      <div class="qa-body">
+        <div class="qa-ans">Une attaque par hameçonnage (phishing).</div>
+        <div class="qa-why">Technique frauduleuse consistant à se faire passer pour un tiers de confiance (ici, l'assureur lui-même) afin d'inciter les victimes à communiquer des données personnelles et/ou bancaires. Cette technique peut être utilisée comme point d'entrée à la fois pour une attaque d'espionnage et pour une attaque de type rançongiciel.</div>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q2 — Quels messages transmettre en priorité aux clients ? (3 pts)</summary>
+      <div class="qa-body">
+        <ul>
+          <li><strong>Alerter clairement</strong> sur l'existence de la campagne frauduleuse et donner des exemples concrets pour reconnaître les faux e-mails.</li>
+          <li><strong>Rappeler</strong> que l'organisation ne demande jamais d'identifiants ou de coordonnées bancaires par e-mail.</li>
+          <li><strong>Indiquer la marche à suivre</strong> pour les clients ayant déjà répondu (changer leurs mots de passe, contacter leur banque, surveiller leurs comptes).</li>
+          <li><strong>Communiquer un canal officiel unique</strong> de signalement et de support pour centraliser les remontées.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Q3 — Quelles démarches réglementaires envisager ? (2 pts)</summary>
+      <div class="qa-body">
+        <div class="qa-why">Si des données personnelles de clients ont été compromises via leur propre réponse au phishing, une <strong>déclaration à la CNIL</strong> au titre du RGPD peut être nécessaire selon l'ampleur de la fuite. Un <strong>dépôt de plainte</strong> auprès des services spécialisés (police/gendarmerie) est également recommandé, ainsi qu'un <strong>signalement à Cybermalveillance.gouv.fr</strong> pour accompagner les victimes.</div>
+      </div>
+    </details>
+
   </div>
 
 </div>
@@ -657,26 +1460,133 @@ const QUESTIONS = [
   {cat:"CCNA 2",label:"ccna2",topic:"Switch L3",q:"Quelle commande active le routage IP sur un switch Cisco multicouche ?",opts:["ip routing","enable routing","router ip","switchport routing off"],ans:0,exp:"La commande 'ip routing' en mode de configuration globale active le routage IP sur un switch Layer 3 Cisco (ex: Catalyst 3560, 3750, 9300)."},
   {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Qu'est-ce que le Router ID dans OSPF ?",opts:["L'adresse du voisin OSPF le plus proche","L'identifiant unique du routeur dans le domaine OSPF","La métrique du chemin OSPF","Le numéro d'aire OSPF"],ans:1,exp:"Le Router ID identifie de façon unique un routeur OSPF. Il est choisi : adresse loopback la plus haute, sinon adresse physique la plus haute, ou configuré manuellement."},
   {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Quel état OSPF précède directement l'état 'Full' lors de l'établissement d'une adjacence ?",opts:["Init","2-Way","Loading","ExStart"],ans:2,exp:"Séquence : Down → Init → 2-Way → ExStart → Exchange → Loading → Full. En état Loading, le routeur demande les LSA manquants avant d'atteindre Full."},
-  {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Quelle commande Cisco affiche les voisins OSPF et leur état ?",opts:["show ip route ospf","show ip ospf neighbor","debug ip ospf events","show ospf topology"],ans:1,exp:"'show ip ospf neighbor' liste les voisins OSPF avec leur Router ID, état (Full, 2-Way...), temps mort et interface utilisée pour l'adjacence."}
+  {cat:"CCNA 2",label:"ccna2",topic:"OSPF",q:"Quelle commande Cisco affiche les voisins OSPF et leur état ?",opts:["show ip route ospf","show ip ospf neighbor","debug ip ospf events","show ospf topology"],ans:1,exp:"'show ip ospf neighbor' liste les voisins OSPF avec leur Router ID, état (Full, 2-Way...), temps mort et interface utilisée pour l'adjacence."},
+  /* ══ CRISE CYBER ══ */
+  {cat:"Crise Cyber",label:"cyber",topic:"Définition",q:"Une crise « d'origine cyber » se définit comme :",opts:["Une simple panne matérielle du datacenter","Une déstabilisation immédiate et majeure du fonctionnement d'une organisation due à des actions malveillantes numériques","Un incident traité par les processus habituels du service informatique","Une campagne de désinformation sur les réseaux sociaux"],ans:1,exp:"Définition officielle : arrêt des activités, impossibilité de délivrer des services, pertes financières lourdes, perte d'intégrité majeure — un événement à fort impact qui ne peut PAS être traité par les processus habituels de l'organisation."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Spécificités",q:"Que désigne la « double temporalité » d'une crise cyber ?",opts:["Deux attaques menées simultanément","Des impacts immédiats suivis d'une remédiation longue (semaines/mois)","Une attaque répartie sur deux fuseaux horaires","L'écart entre l'heure de détection et l'heure de déclaration"],ans:1,exp:"La crise cyber frappe instantanément (services à l'arrêt) mais la reconstruction saine du SI s'étale sur des semaines voire des mois. Les équipes doivent s'organiser pour une épreuve d'endurance, pas un sprint."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Spécificités",q:"Que signifie l'« absence d'unicité de lieu » d'une crise cyber ?",opts:["La crise peut se propager à d'autres organisations via l'interconnexion des SI","La cellule de crise est toujours délocalisée","L'attaquant opère depuis plusieurs pays","Les serveurs sont hébergés dans le cloud"],ans:0,exp:"Contrairement à une crise physique circonscrite à un site, une crise cyber peut déborder sur les partenaires, fournisseurs et clients à cause de l'interconnexion des systèmes d'information."},
+  {cat:"Crise Cyber",label:"cyber",topic:"SMSI",q:"Le principal objectif d'un SMSI est :",opts:["Installer un antivirus sur tous les postes","Organiser la gestion de la sécurité de l'information","Configurer le pare-feu périmétrique","Chiffrer l'ensemble des sauvegardes"],ans:1,exp:"Le Système de Management de la Sécurité de l'Information structure la gouvernance sécurité (processus, rôles, amélioration continue) — pas seulement des outils techniques comme un antivirus ou un pare-feu."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Typologie",q:"Quelle attaque chiffre les fichiers d'une organisation contre une rançon ?",opts:["Le déni de service (DDoS)","L'injection SQL","Le rançongiciel (ransomware)","La défiguration"],ans:2,exp:"Le rançongiciel chiffre les données — y compris souvent les sauvegardes — contre le versement d'une rançon, avec fréquemment une menace de divulgation. Le DDoS sature, l'injection SQL exploite une faille web."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Typologie",q:"Une attaque DDoS vise principalement à :",opts:["Exfiltrer discrètement des données stratégiques","Saturer un service afin de le rendre indisponible","Chiffrer les données de l'organisation","Modifier l'apparence d'un site web"],ans:1,exp:"Le déni de service distribué rend un service indisponible par saturation de requêtes. À ne pas confondre avec le rançongiciel (chiffrement) ou l'espionnage (exfiltration discrète)."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Typologie",q:"Un attaquant présent discrètement dans le SI depuis 18 mois pour exfiltrer des brevets relève de :",opts:["Un rançongiciel","Une défiguration","Une attaque d'espionnage","Un déni de service"],ans:2,exp:"L'espionnage est une intrusion discrète et durable (parfois plusieurs années) visant à exfiltrer de l'information stratégique, sans dysfonctionnement visible des services."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Communication",q:"Durant une crise cyber, la communication doit être :",opts:["Rapide, cohérente et vérifiée","Diffusée uniquement après la fin de la crise","Limitée aux réseaux sociaux","Cachée tant que l'enquête n'est pas terminée"],ans:0,exp:"La communication doit accompagner la crise en temps réel : jamais cachée, ni basée uniquement sur les réseaux sociaux, ni réalisée seulement après coup."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Communication",q:"La communication de crise doit être fondée sur :",opts:["Les rumeurs qui circulent en interne","Les informations vérifiées","Les publications des réseaux sociaux","Les hypothèses des équipes techniques"],ans:1,exp:"La fiabilité de l'information est la priorité absolue : jamais de suppositions ni de rumeurs. On communique de façon évolutive, sans attendre 100 % des faits, mais uniquement sur du vérifié."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Communication",q:"Une communication de crise inefficace peut :",opts:["Provoquer l'attaque technique","Empêcher la propagation du rançongiciel","Aggraver la crise","Annuler les obligations RGPD"],ans:2,exp:"Une mauvaise communication ne provoque ni n'empêche l'attaque technique, mais elle amplifie la perte de confiance et l'emballement médiatique — elle aggrave donc la crise."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Communication",q:"Quels sont les 3 grands types de communication qui coexistent en crise cyber ?",opts:["Interne, externe et commerciale","Technique, institutionnelle et politique","Écrite, orale et visuelle","Préventive, réactive et corrective"],ans:1,exp:"Technique = factuelle et évolutive (équipes cyber). Institutionnelle = validée par le décideur. Politique = portée par les autorités. Le communicant coordonne ces trois fils de parole."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Communication interne",q:"Quel est le rôle principal de la communication interne pendant une crise ?",opts:["Informer et rassurer les collaborateurs","Répondre aux journalistes","Négocier avec l'attaquant","Publier le rapport d'investigation"],ans:0,exp:"Souvent négligée, la communication interne est pourtant essentielle : elle maintient la confiance, donne les consignes de travail en mode dégradé et évite les rumeurs internes."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Préparation",q:"Qui doit participer à la préparation d'une crise cyber ?",opts:["Le RSSI uniquement","La direction uniquement","Les équipes IT, Cyber et Communication","Les utilisateurs finaux uniquement"],ans:2,exp:"La préparation est transverse : elle ne peut pas reposer sur le seul RSSI, la seule direction ou les seuls utilisateurs. IT, Cyber et Communication doivent travailler ensemble en amont."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Porte-parole",q:"Le rôle du porte-parole est de :",opts:["Communiquer officiellement au nom de l'organisation","Piloter la remédiation technique","Négocier avec l'attaquant","Décider du paiement de la rançon"],ans:0,exp:"Le porte-parole est formé et désigné en amont. Il centralise la parole externe pour éviter les messages contradictoires — on ne multiplie jamais les porteurs du message officiel."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Boîte à outils",q:"Quel document regroupe fichier presse, codes d'accès, annuaires et glossaire ?",opts:["Le PCA (plan de continuité d'activité)","La charte informatique","La boîte à outils de crise","La politique de sécurité du SI"],ans:2,exp:"La boîte à outils de crise contient la stratégie de com, le schéma du dispositif, les outils de pilotage (fichier presse, codes d'accès, annuaires) et le glossaire / les éléments de langage."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Boîte à outils",q:"Où faut-il conserver la boîte à outils de gestion de crise cyber ?",opts:["Sur le serveur de fichiers principal","Sur clé USB ou serveur déconnecté, avec une version papier","Dans la messagerie du RSSI","Sur un partage réseau accessible à tous"],ans:1,exp:"Le SI peut être totalement indisponible ou compromis le jour J. La boîte à outils doit donc rester accessible hors ligne : clé USB, serveur déconnecté et version papier."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Anticipation",q:"Pourquoi faut-il préparer les scénarios de crise avant un incident ?",opts:["Pour satisfaire un audit de conformité","Pour améliorer la rapidité de réaction","Pour empêcher techniquement l'attaque","Pour réduire le coût de l'assurance cyber"],ans:1,exp:"Anticiper permet de disposer d'un référentiel de questions/réponses prêt à l'emploi : c'est le gage de rapidité et d'agilité le jour J, quand le stress domine."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Anticipation",q:"Une bonne stratégie de communication de crise doit être élaborée :",opts:["Avant la crise","Pendant les premières heures de la crise","Après le retour à la normale","Au moment du premier appel de la presse"],ans:0,exp:"Une stratégie construite « à froid » sert de référentiel et de guide pratique lors de la gestion, période marquée par le stress et l'urgence."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Gestion de crise",q:"La première étape d'une bonne gestion de crise consiste à :",opts:["Contacter immédiatement les médias","Anticiper et préparer les équipes","Restaurer les serveurs","Déposer plainte"],ans:1,exp:"Avant même de contacter les médias ou de restaurer les serveurs, la préparation en amont (scénarios, formation, exercices) est la base de toute gestion de crise efficace."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Exercices",q:"Pourquoi réaliser des exercices de crise ?",opts:["Pour tester l'efficacité du dispositif de gestion de crise","Pour remplacer les sauvegardes","Pour prouver la conformité RGPD","Pour identifier les vulnérabilités techniques du SI"],ans:0,exp:"Les exercices révèlent les failles du dispositif et créent des automatismes utiles le jour J — pas pour satisfaire un audit. 3 types : global, communication seule, avec participants externes."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Investigation",q:"Quel acteur pilote généralement les investigations techniques ?",opts:["Le directeur de la communication","Le RSSI et les équipes Cyber","La CNIL","Le service juridique"],ans:1,exp:"Le RSSI et les équipes cyber analysent le mode opératoire, déterminent le périmètre de compromission et pilotent la remédiation technique."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Rançongiciel",q:"Quelle autorité recommande de ne pas payer une rançon ?",opts:["Interpol","Microsoft","L'ANSSI","Europol"],ans:2,exp:"L'Agence Nationale de la Sécurité des Systèmes d'Information est la référence française en la matière."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Rançongiciel",q:"Pourquoi l'ANSSI déconseille-t-elle de payer la rançon ?",opts:["Le paiement est illégal dans tous les cas","Cela ne garantit pas la récupération des données et désigne l'organisation comme « bon payeur »","Le déchiffrement devient gratuit après 30 jours","Le paiement annule la couverture d'assurance cyber"],ans:1,exp:"Le déchiffrement peut échouer ou être partiel, le paiement incite à de nouvelles attaques sur un « bon payeur », ne dispense pas de reconstruire le SI et peut financer des activités criminelles."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Rançongiciel",q:"Le temps de remédiation d'un rançongiciel est généralement :",opts:["Immédiat après paiement de la rançon","De quelques heures","Long et complexe","Nul si les sauvegardes sont récentes"],ans:2,exp:"Malgré des effets immédiats visibles, les analyses techniques (investigation, reconstruction saine du SI) prennent des semaines voire des mois."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Rançongiciel",q:"Face à un rançongiciel qui paralyse les outils bureautiques, que faut-il prévoir ?",opts:["Des canaux dégradés (listing téléphonique, affichage papier)","Une communication uniquement par e-mail interne","Le report de toute communication à la fin de la crise","La publication du message de rançon"],ans:0,exp:"Les outils classiques (messagerie, intranet, téléphonie IP) sont souvent paralysés. Il faut prévoir en amont des canaux dégradés : listing téléphonique papier, affichage, SMS."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Veille",q:"La veille médiatique permet principalement de :",opts:["Détecter les vulnérabilités techniques","Sauvegarder les données critiques","Suivre les réactions du public et adapter la communication","Bloquer les publications hostiles"],ans:2,exp:"C'est un outil de perception, pas de sécurité technique : elle n'a pas vocation à détecter des vulnérabilités ni à sauvegarder des données."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Organisation",q:"Quelle est la principale mission de la cellule stratégique ?",opts:["Restaurer les serveurs et appliquer les correctifs","Prendre les décisions majeures engageant l'organisation","Analyser les marqueurs techniques de l'attaque","Rédiger les procédures d'exploitation"],ans:1,exp:"Elle regroupe la direction et les métiers soutien (juridique, RH, communication). Elle ne gère ni les serveurs ni les correctifs techniques — c'est le rôle des cellules opérationnelles."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Organisation",q:"À quelle cellule appartient généralement la fonction communication ?",opts:["La cellule technique","La cellule stratégique","La cellule logistique","Aucune, elle est systématiquement externalisée"],ans:1,exp:"Les décisions engageant l'image et la réputation se prennent au niveau des décideurs : la communication siège donc en cellule stratégique, aux côtés de la direction, du juridique et des RH."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Organisation",q:"Quels sont les 3 postes clés de l'organisation de la communication de crise ?",opts:["Rédaction, traduction, diffusion","Coordination, veille et perception, réaction","Alerte, escalade, clôture","Interne, presse, juridique"],ans:1,exp:"Coordination (lien entre les cellules et les parties prenantes) ; Veille et perception (médias, réseaux sociaux) ; Réaction (relations presse, réseaux sociaux, site web, communication interne)."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Attribution",q:"L'« attribution » d'une attaque informatique est :",opts:["Le travail technique de caractérisation des TTP","Une décision politique désignant le commanditaire de l'attaque","L'identification du vecteur d'attaque initial","La notification de l'incident à la CNIL"],ans:1,exp:"L'attribution est une décision POLITIQUE, prise au plus haut niveau, désignant le commanditaire (souvent un État). Elle s'appuie sur l'imputation, qui est le travail technique."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Imputation",q:"L'« imputation » désigne :",opts:["La décision politique de désigner un État responsable","Le travail technique de caractérisation des outils, techniques et tactiques (TTP) de l'attaquant","Le calcul du coût financier de l'attaque","La répartition des responsabilités juridiques internes"],ans:1,exp:"Piège d'examen classique : l'imputation est le travail des experts techniques (TTP, mode opératoire), l'attribution est la décision politique finale qui s'appuie dessus."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Glossaire",q:"Que désigne un marqueur technique (IOC) ?",opts:["Un indicateur de compromission permettant de détecter ou caractériser une attaque","Le coût moyen d'un incident de sécurité","Un identifiant unique attribué à l'attaquant","Une clause du contrat d'assurance cyber"],ans:0,exp:"Un IOC (Indicator Of Compromise) est par exemple une adresse IP malveillante, un hash de fichier ou un nom de domaine, utilisé pour détecter et caractériser une attaque."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Glossaire",q:"Que désigne le « mode opératoire » (MOA) d'un attaquant ?",opts:["Le vecteur d'entrée utilisé","La « signature » de l'attaquant, sa façon de cibler et d'attaquer ses victimes","Le montant de la rançon demandée","La durée de présence dans le SI"],ans:1,exp:"Le mode opératoire est la signature de l'attaquant : sa manière d'opérer pour cibler et attaquer. Son analyse alimente l'imputation."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Glossaire",q:"Que désigne la « défiguration » d'un site Internet ?",opts:["Le chiffrement de sa base de données","L'altération de son apparence (contenu, slogans, images) par un pirate","Sa saturation par un flot massif de requêtes","Le vol de son nom de domaine"],ans:1,exp:"La défiguration est une attaque de déstabilisation : effet symbolique et médiatique fort, mais impact technique généralement limité — comme le DDoS."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Glossaire",q:"Le hameçonnage (phishing) consiste à :",opts:["Saturer un serveur de requêtes","Se faire passer pour un tiers de confiance afin d'obtenir des données personnelles ou bancaires","Chiffrer les fichiers d'un poste de travail","Exploiter une faille d'un serveur web non corrigé"],ans:1,exp:"Le phishing est une technique frauduleuse d'usurpation d'un tiers de confiance. Il sert fréquemment de point d'entrée à une attaque d'espionnage ou à un rançongiciel."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Glossaire",q:"Qu'est-ce qu'un « vecteur d'attaque » ?",opts:["Le moyen d'accès exploité par l'attaquant (pièce jointe, page web, vulnérabilité non corrigée)","La cible finale de l'attaque","Le logiciel de chiffrement utilisé","Le canal de négociation de la rançon"],ans:0,exp:"Le vecteur d'attaque est la porte d'entrée : pièce jointe piégée, page web malveillante, vulnérabilité non corrigée. À distinguer de la vulnérabilité elle-même, qui est la faille."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Phases",q:"Quelle est la première des 4 grandes phases de la réaction à une crise cyber ?",opts:["Durcir, restaurer, surveiller","Alerter, mobiliser, endiguer","Maintenir la confiance et comprendre l'attaque","Revenir à la normale"],ans:1,exp:"Phase 1 : mobiliser le dispositif de crise, mettre en place les premières mesures d'endiguement et de continuité d'activité, alerter les réseaux de soutien (CERT, assureurs, autorités)."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Phases",q:"À quelle phase de la réaction correspondent le retour à la normale et le RETEX ?",opts:["Phase 1","Phase 2","Phase 3","Phase 4"],ans:3,exp:"Phase 4 : retour à la normale et retour d'expérience (RETEX), pour capitaliser sur la crise et progresser. Les phases peuvent se chevaucher."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Phases",q:"Que fait-on principalement pendant la phase 3 « Durcir, restaurer, surveiller » ?",opts:["Mobiliser la cellule de crise et endiguer","Restaurer les applications et données critiques sur des bases saines","Rédiger le retour d'expérience","Conduire l'investigation initiale"],ans:1,exp:"Phase 3 : durcir les systèmes, restaurer applications et données critiques sur des bases saines, et surveiller l'attaquant pour reprendre le cœur des activités."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Espionnage",q:"Face à une attaque d'espionnage non rendue publique, le silence est :",opts:["Interdit par le RGPD","Une option ouverte, à assumer après analyse de risque","Toujours la meilleure option","Possible uniquement avec l'accord de l'ANSSI"],ans:1,exp:"Le silence revient à accepter le risque d'une fuite d'information, y compris des mois plus tard. Dans tous les cas, des éléments de langage réactifs doivent être préparés à l'avance."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Réglementaire",q:"En cas de compromission de données personnelles, quel organisme doit être notifié en France ?",opts:["L'ANSSI","La CNIL","Cybermalveillance.gouv.fr","Le régulateur sectoriel uniquement"],ans:1,exp:"La CNIL est l'autorité de contrôle du RGPD et traite les plaintes. L'ANSSI accompagne techniquement, Cybermalveillance.gouv.fr oriente les victimes — mais la notification réglementaire va à la CNIL."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Préparation",q:"Que doit-on cartographier en priorité pour se préparer à une crise cyber ?",opts:["Les applications et services critiques, les interdépendances et les parties prenantes","Les postes de travail des dirigeants","Les comptes sur les réseaux sociaux","Les contrats commerciaux en cours"],ans:0,exp:"Connaître et maîtriser son SI passe par la cartographie des applications/services critiques, des interdépendances, des parties prenantes, et par une politique de rétention des logs."},
+  {cat:"Crise Cyber",label:"cyber",topic:"Capitalisation",q:"Une fois la crise sous contrôle, que recommande le guide (étape « Saisir une opportunité ») ?",opts:["Clore le dossier et passer à autre chose","Identifier les axes d'amélioration, lancer une sensibilisation et partager son retour d'expérience","Publier l'intégralité du rapport d'investigation","Changer de porte-parole"],ans:1,exp:"La crise est une opportunité : identifier les axes d'amélioration, lancer une campagne de sensibilisation interne/externe et partager son RETEX pour faire progresser tout l'écosystème."},
+  {cat:"Crise Cyber",label:"cyber",topic:"DDoS",q:"Pourquoi une attaque DDoS est-elle sensible en communication malgré un impact technique limité ?",opts:["Parce qu'elle entraîne toujours une fuite de données","À cause du décalage entre la perception médiatique amplifiée et la faible complexité technique réelle","Parce qu'elle empêche toute investigation","Parce qu'elle est impossible à stopper"],ans:1,exp:"Sans communication mesurée et pédagogique, l'emballement médiatique disproportionné fait atteindre à l'attaque son but réel : la déstabilisation."}
 ];
 
+/* ── State ── */
+const DECK_FILTER = { all: null, ccna1: "ccna1", ccna2: "ccna2", cyber: "cyber" };
+const DECK_LABEL  = { all: "Tout", ccna1: "CCNA 1", ccna2: "CCNA 2", cyber: "Crise Cyber" };
+
+let deckName = "all";
+let deckList = [];      /* indices de QUESTIONS pour la série active */
+let activeList = [];    /* indices réellement parcourus (série ou révision) */
 let current = 0;
 let answers = new Array(QUESTIONS.length).fill(null);
 let startTime = Date.now();
 let reviewMode = false;
-let reviewList = [];
+let quizStage = "quiz"; /* "quiz" | "result" */
+
+/* ── Décomptes dynamiques (pastilles) ── */
+function countOf(label) { return QUESTIONS.filter(q => q.label === label).length; }
+
+function paintCounts() {
+  document.getElementById("pill-ccna1").textContent = "CCNA 1 — " + countOf("ccna1") + " questions";
+  document.getElementById("pill-ccna2").textContent = "CCNA 2 — " + countOf("ccna2") + " questions";
+  document.getElementById("pill-cyber").textContent = "Crise Cyber — " + countOf("cyber") + " questions";
+  document.querySelectorAll(".deck-pill").forEach(pill => {
+    const d = pill.dataset.deck;
+    const n = d === "all" ? QUESTIONS.length : countOf(DECK_FILTER[d]);
+    pill.textContent = DECK_LABEL[d] + " — " + n;
+  });
+}
+
+/* ── Séries ── */
+function buildDeck(name) {
+  deckName = name;
+  deckList = [];
+  QUESTIONS.forEach((q, i) => {
+    if (!DECK_FILTER[name] || q.label === DECK_FILTER[name]) deckList.push(i);
+  });
+  activeList = deckList.slice();
+  reviewMode = false;
+  current = 0;
+}
+
+function setDeck(name) {
+  buildDeck(name);
+  startTime = Date.now();
+  quizStage = "quiz";
+  document.querySelectorAll(".deck-pill").forEach(p =>
+    p.classList.toggle("active", p.dataset.deck === name));
+  document.getElementById("result-view").style.display = "none";
+  document.getElementById("quiz-view").style.display = "block";
+  render();
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+/* ── Onglets ── */
+function switchTab(name) {
+  document.querySelectorAll(".tab").forEach(t =>
+    t.classList.toggle("active", t.dataset.tab === name));
+  const quiz  = document.getElementById("quiz-view");
+  const res   = document.getElementById("result-view");
+  const fiche = document.getElementById("fiche-view");
+  if (name === "fiche") {
+    quiz.style.display = "none";
+    res.style.display = "none";
+    fiche.style.display = "block";
+  } else {
+    fiche.style.display = "none";
+    quiz.style.display = quizStage === "quiz"   ? "block" : "none";
+    res.style.display  = quizStage === "result" ? "block" : "none";
+  }
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
 
 /* ── Build dot nav ── */
-function buildDots(list) {
-  const nav = document.getElementById('dot-nav');
-  const qs = list || QUESTIONS;
-  nav.innerHTML = '';
-  qs.forEach((_, i) => {
-    const idx = reviewMode ? reviewList[i] : i;
-    const d = document.createElement('div');
-    d.className = 'dot' + (i === current ? ' curr' : '') +
-      (answers[idx] !== null ? (answers[idx] === QUESTIONS[idx].ans ? ' ok' : ' fail') : '');
-    d.title = `Q${idx+1}`;
+function buildDots() {
+  const nav = document.getElementById("dot-nav");
+  nav.innerHTML = "";
+  activeList.forEach((idx, i) => {
+    const d = document.createElement("div");
+    d.className = "dot" + (i === current ? " curr" : "") +
+      (answers[idx] !== null ? (answers[idx] === QUESTIONS[idx].ans ? " ok" : " fail") : "");
+    d.title = "Q" + (deckList.indexOf(idx) + 1);
     d.onclick = () => { current = i; render(); };
     nav.appendChild(d);
   });
@@ -684,82 +1594,83 @@ function buildDots(list) {
 
 /* ── Render current question ── */
 function render() {
-  const qs = reviewMode ? reviewList.map(i => QUESTIONS[i]) : QUESTIONS;
-  const total = qs.length;
-  const realIdx = reviewMode ? reviewList[current] : current;
+  const total = activeList.length;
+  const realIdx = activeList[current];
   const q = QUESTIONS[realIdx];
 
   /* progress */
-  const pct = Math.round(((current+1)/total)*100);
-  document.getElementById('p-label').textContent = `Question ${current+1} / ${total}`;
-  document.getElementById('p-pct').textContent = pct + '%';
-  document.getElementById('progress-fill').style.width = pct + '%';
+  const pct = Math.round(((current + 1) / total) * 100);
+  document.getElementById("p-label").textContent =
+    (reviewMode ? "Révision " : "Question ") + (current + 1) + " / " + total;
+  document.getElementById("p-pct").textContent = pct + "%";
+  document.getElementById("progress-fill").style.width = pct + "%";
 
-  /* score live */
-  const answered = answers.filter(a => a !== null).length;
-  const correct = answers.filter((a,i) => a !== null && a === QUESTIONS[i].ans).length;
-  document.getElementById('score-live').textContent = answered > 0 ? `${correct}/${answered}` : '—';
+  /* score live (sur la série active) */
+  const answered = deckList.filter(i => answers[i] !== null).length;
+  const correct  = deckList.filter(i => answers[i] !== null && answers[i] === QUESTIONS[i].ans).length;
+  document.getElementById("score-live").textContent = answered > 0 ? correct + "/" + answered : "—";
 
   /* question meta */
-  document.getElementById('q-num').textContent = 'Q' + String(realIdx+1).padStart(2,'0');
-  const badge = document.getElementById('q-badge');
+  document.getElementById("q-num").textContent =
+    "Q" + String(deckList.indexOf(realIdx) + 1).padStart(2, "0");
+  const badge = document.getElementById("q-badge");
   badge.textContent = q.cat;
-  badge.className = 'q-badge ' + q.label;
-  document.getElementById('q-topic').textContent = q.topic;
-  document.getElementById('q-text').textContent = q.q;
+  badge.className = "q-badge " + q.label;
+  document.getElementById("q-topic").textContent = q.topic;
+  document.getElementById("q-text").textContent = q.q;
 
   /* options */
-  const optsEl = document.getElementById('options');
-  optsEl.innerHTML = '';
-  const keys = ['A','B','C','D'];
+  const optsEl = document.getElementById("options");
+  optsEl.innerHTML = "";
+  const keys = ["A", "B", "C", "D"];
   q.opts.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'opt';
+    const btn = document.createElement("button");
+    btn.className = "opt";
     if (answers[realIdx] !== null) {
-      if (i === q.ans) btn.className += ' reveal';
-      if (i === answers[realIdx] && i !== q.ans) btn.className += ' wrong';
-      if (i === answers[realIdx] && i === q.ans) btn.className = 'opt correct';
+      if (i === q.ans) btn.className += " reveal";
+      if (i === answers[realIdx] && i !== q.ans) btn.className += " wrong";
+      if (i === answers[realIdx] && i === q.ans) btn.className = "opt correct";
       btn.disabled = true;
     }
-    btn.innerHTML = `<span class="opt-key">${keys[i]}.</span><span>${opt}</span>`;
+    btn.innerHTML = '<span class="opt-key">' + keys[i] + '.</span><span></span>';
+    btn.lastChild.textContent = opt;
     btn.onclick = () => select(i, realIdx);
     optsEl.appendChild(btn);
   });
 
   /* feedback */
-  const fb = document.getElementById('feedback');
-  fb.className = 'feedback';
+  const fb = document.getElementById("feedback");
+  fb.className = "feedback";
   if (answers[realIdx] !== null) {
     const ok = answers[realIdx] === q.ans;
-    fb.className = 'feedback show ' + (ok ? 'ok' : 'ko');
-    fb.textContent = ok ? '✓ Bonne réponse !' : '✗ Mauvaise réponse — la bonne est ' + keys[q.ans];
+    fb.className = "feedback show " + (ok ? "ok" : "ko");
+    fb.textContent = ok ? "✓ Bonne réponse !" : "✗ Mauvaise réponse — la bonne est " + keys[q.ans];
   }
 
   /* explanation */
-  const exp = document.getElementById('explanation');
-  const expTxt = document.getElementById('exp-text');
+  const exp = document.getElementById("explanation");
+  const expTxt = document.getElementById("exp-text");
   if (answers[realIdx] !== null) {
     expTxt.textContent = q.exp;
-    exp.className = 'explanation show';
+    exp.className = "explanation show";
   } else {
-    exp.className = 'explanation';
+    exp.className = "explanation";
   }
 
   /* nav buttons */
-  document.getElementById('prev-btn').disabled = current === 0;
-  const nextBtn = document.getElementById('next-btn');
+  document.getElementById("prev-btn").disabled = current === 0;
+  const nextBtn = document.getElementById("next-btn");
   if (current === total - 1) {
-    nextBtn.textContent = reviewMode ? '✓ Terminer la révision' : '✓ Voir les résultats';
+    nextBtn.textContent = reviewMode ? "✓ Terminer la révision" : "✓ Voir les résultats";
     nextBtn.onclick = reviewMode ? endReview : showResults;
   } else {
-    nextBtn.textContent = 'Suivant →';
+    nextBtn.textContent = "Suivant →";
     nextBtn.onclick = () => navigate(1);
   }
 
-  buildDots(reviewMode ? reviewList.map(i => QUESTIONS[i]) : null);
+  buildDots();
 
-  /* scroll to top of card smoothly */
-  document.getElementById('q-card').scrollIntoView({behavior:'smooth', block:'nearest'});
+  document.getElementById("q-card").scrollIntoView({behavior: "smooth", block: "nearest"});
 }
 
 function select(i, realIdx) {
@@ -769,83 +1680,91 @@ function select(i, realIdx) {
 }
 
 function navigate(dir) {
-  const total = reviewMode ? reviewList.length : QUESTIONS.length;
   const next = current + dir;
-  if (next < 0 || next >= total) return;
+  if (next < 0 || next >= activeList.length) return;
   current = next;
   render();
 }
 
 /* ── Results ── */
+function subScore(label) {
+  const idxs = deckList.filter(i => QUESTIONS[i].label === label);
+  if (!idxs.length) return "—";
+  const ok = idxs.filter(i => answers[i] === QUESTIONS[i].ans).length;
+  return ok + "/" + idxs.length;
+}
+
 function showResults() {
   const elapsed = Math.round((Date.now() - startTime) / 1000);
   const mins = Math.floor(elapsed / 60);
   const secs = elapsed % 60;
 
-  const correct = answers.filter((a,i) => a !== null && a === QUESTIONS[i].ans).length;
-  const wrong = answers.filter((a,i) => a !== null && a !== QUESTIONS[i].ans).length;
-  const unanswered = answers.filter(a => a === null).length;
-  const total = QUESTIONS.length;
-  const pct = Math.round((correct / total) * 100);
+  const total      = deckList.length;
+  const correct    = deckList.filter(i => answers[i] !== null && answers[i] === QUESTIONS[i].ans).length;
+  const wrong      = deckList.filter(i => answers[i] !== null && answers[i] !== QUESTIONS[i].ans).length;
+  const unanswered = deckList.filter(i => answers[i] === null).length;
+  const pct = total ? Math.round((correct / total) * 100) : 0;
 
-  const ccna1 = QUESTIONS.filter(q => q.label === 'ccna1');
-  const ccna2 = QUESTIONS.filter(q => q.label === 'ccna2');
-  const ccna1c = ccna1.filter(q => { const i = QUESTIONS.indexOf(q); return answers[i] === q.ans; }).length;
-  const ccna2c = ccna2.filter(q => { const i = QUESTIONS.indexOf(q); return answers[i] === q.ans; }).length;
+  document.getElementById("r-pct").textContent = pct + "%";
+  document.getElementById("r-total-lbl").textContent =
+    "Score final — série « " + DECK_LABEL[deckName] + " » sur " + total + " questions";
+  document.getElementById("r-correct").textContent = correct;
+  document.getElementById("r-wrong").textContent = wrong;
+  document.getElementById("r-unanswered").textContent = unanswered;
+  document.getElementById("r-ccna1").textContent = subScore("ccna1");
+  document.getElementById("r-ccna2").textContent = subScore("ccna2");
+  document.getElementById("r-cyber").textContent = subScore("cyber");
+  document.getElementById("r-time").textContent = mins + "m " + secs + "s";
 
-  document.getElementById('r-pct').textContent = pct + '%';
-  document.getElementById('r-correct').textContent = correct;
-  document.getElementById('r-wrong').textContent = wrong;
-  document.getElementById('r-unanswered').textContent = unanswered;
-  document.getElementById('r-ccna1').textContent = `${ccna1c}/25`;
-  document.getElementById('r-ccna2').textContent = `${ccna2c}/25`;
-  document.getElementById('r-time').textContent = `${mins}m ${secs}s`;
+  const grade = document.getElementById("r-grade");
+  if (pct >= 85)      { grade.textContent = "🎯 Excellent — Prêt pour la certification !"; grade.className = "grade-badge grade-a"; }
+  else if (pct >= 70) { grade.textContent = "👍 Bien — Quelques révisions à faire";       grade.className = "grade-badge grade-b"; }
+  else if (pct >= 50) { grade.textContent = "📚 Moyen — Révisions importantes";           grade.className = "grade-badge grade-c"; }
+  else                { grade.textContent = "🔄 Insuffisant — Reprendre les bases";       grade.className = "grade-badge grade-d"; }
 
-  const grade = document.getElementById('r-grade');
-  if (pct >= 85) { grade.textContent = '🎯 Excellent — Prêt pour la certification !'; grade.className = 'grade-badge grade-a'; }
-  else if (pct >= 70) { grade.textContent = '👍 Bien — Quelques révisions à faire'; grade.className = 'grade-badge grade-b'; }
-  else if (pct >= 50) { grade.textContent = '📚 Moyen — Révisions importantes'; grade.className = 'grade-badge grade-c'; }
-  else { grade.textContent = '🔄 Insuffisant — Reprendre les bases'; grade.className = 'grade-badge grade-d'; }
-
-  document.getElementById('quiz-view').style.display = 'none';
-  document.getElementById('result-view').style.display = 'block';
-  window.scrollTo({top:0, behavior:'smooth'});
+  quizStage = "result";
+  document.getElementById("quiz-view").style.display = "none";
+  document.getElementById("result-view").style.display = "block";
+  window.scrollTo({top: 0, behavior: "smooth"});
 }
 
 function reviewWrong() {
-  reviewList = answers.reduce((acc, a, i) => {
-    if (a === null || a !== QUESTIONS[i].ans) acc.push(i);
-    return acc;
-  }, []);
-  if (reviewList.length === 0) { alert('Félicitations, toutes les réponses sont correctes !'); return; }
+  const list = deckList.filter(i => answers[i] === null || answers[i] !== QUESTIONS[i].ans);
+  if (list.length === 0) { alert("Félicitations, toutes les réponses sont correctes !"); return; }
+  activeList = list;
   reviewMode = true;
   current = 0;
-  document.getElementById('result-view').style.display = 'none';
-  document.getElementById('quiz-view').style.display = 'block';
+  quizStage = "quiz";
+  document.getElementById("result-view").style.display = "none";
+  document.getElementById("quiz-view").style.display = "block";
   render();
 }
 
 function endReview() {
   reviewMode = false;
-  reviewList = [];
+  activeList = deckList.slice();
   current = 0;
   showResults();
 }
 
 function restart() {
-  answers = new Array(QUESTIONS.length).fill(null);
+  deckList.forEach(i => answers[i] = null);
+  activeList = deckList.slice();
+  reviewMode = false;
   current = 0;
   startTime = Date.now();
-  reviewMode = false;
-  reviewList = [];
-  document.getElementById('result-view').style.display = 'none';
-  document.getElementById('quiz-view').style.display = 'block';
+  quizStage = "quiz";
+  document.getElementById("result-view").style.display = "none";
+  document.getElementById("quiz-view").style.display = "block";
   render();
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top: 0, behavior: "smooth"});
 }
 
 /* ── Init ── */
+paintCounts();
+buildDeck("all");
 render();
+
 </script>
 </body>
 </html>
